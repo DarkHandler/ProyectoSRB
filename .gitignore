@@ -1,0 +1,4 @@
+#ignorar todo esto al push del repositorio
+server/node_modules
+
+server/keys.js

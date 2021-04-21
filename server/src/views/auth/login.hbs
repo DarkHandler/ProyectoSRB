@@ -1,0 +1,28 @@
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Ingrese sus datos aquí</h3>
+                    <form action="/login" method="POST" class="row g-4">
+                        <div class="col-12">
+                            <label for="inputUsername" class="form-label">RUN</label>
+                            <input type="text" class="form-control" id="inputUsername" placeholder="1234567-8" name="username">
+                        </div>
+
+                        <div class="col-12">
+                            <label for="inputPassword" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="inputPassword" placeholder="Contraseña" name="password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Iniciar sesion</button>
+                    </form>
+                    <p>Si usted no tiene cuenta, puede postularse en la pagina haciendo clic en el siguiente botón</p>
+                    <a type="button" class="btn btn-success" href="/signup">Postule aquí</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+</div>

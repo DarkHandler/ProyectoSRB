@@ -1,0 +1,35 @@
+
+<div class="container p-4">
+    <div class="row">
+        <div class="col-sm-6 ">
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Datos Originales</h5>
+                    <p class="card-text">Run: {{info.[0].run}}</p>
+                    <p class="card-text">Rol: {{info.[0].rol}}</p>
+                    <p class="card-text">Domicilio: {{info.[0].domicilio}}</p>
+                    <p class="card-text">Habitantes: {{info.[0].num_habitantes}}</p>
+                    <p class="card-text">Sub Sector: {{info.[1].subsector}}</p>
+                    <p class="card-text">Sector: {{info.[1].sector}}</p>
+                    <a href="/borrarCambio/{{info.[0].run}}" class="btn btn-primary">Mantener Datos Originales</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Solicitud de cambio</h5>
+                    <p class="card-text">Run: {{info.[2].run}}</p>
+                    <p class="card-text">Rol: {{info.[2].rol}}</p>
+                    <p class="card-text">Domicilio: {{info.[2].domicilio}}</p>
+                    <p class="card-text">Habitantes: {{info.[2].num_habitantes}}</p>
+                    <p class="card-text">Sub Sector: {{info.[3].subsector}}</p>
+                    <p class="card-text">Sector: {{info.[3].sector}}</p>
+                    <a href="/realizaCambio/{{info.[0].run}}" class="btn btn-primary">Confirmar Cambio Datos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

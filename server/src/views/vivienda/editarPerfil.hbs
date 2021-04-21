@@ -1,0 +1,96 @@
+<div class="container -p-4">
+    <br>
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>Solicitud de cambio de Datos</h3>
+                </div>
+                <div class="card-body">
+                    <form action="/editarPerfil" method="POST">
+                        <div class="form-group mb-2 ">
+                            <input type="text" class="form-control" name="run" placeholder="Run : 12345678-9" value="{{info.[2].run}}" autofocus>
+                        </div>
+                        <div class="form-group mb-2">
+                            <input type="number" class="form-control" name="rol" placeholder="Rol de la Vivienda"
+                                min="0" value="{{info.[2].rol}}">
+                        </div>
+                        <div class="form-group mb-2">
+                            <input type="text" class="form-control" name="domicilio" placeholder="Domicilio" value="{{info.[2].domicilio}}">
+                        </div>
+                        <div class="form-group mb-2">
+                            <input type="number" class="form-control" name="num_habitantes"
+                                placeholder="Habitantes en la Vivienda" min="1" value="{{info.[2].num_habitantes}}">
+                        </div>
+                        <div class="form-group mb-2">
+                            <select class="form-select" name="sector" id="sector" onchange="viewSector()">
+
+                                <option value="" disabled selected>Seleccione un Sector...</option>
+                                {{#each info.[1]}}
+                                    <option value="{{this.sector_id}}"> {{this.nombre}} </option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="form-group mb-2">
+                            <select class="form-select" name="subsector" id="subsector">
+                                <option value="" disabled selected>Seleccione un Subsector...</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-2">
+                            <button type="submit" class="btn btn-success btn-block">
+                                Enviar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function viewSector(info) {
+        var sectorSelecionado = document.getElementById("sector").value;
+        var subsectorSelect = document.getElementById("subsector");
+        var listSubsector = [];
+        {{#each info.[0] }}
+            var subsector = [];
+            subsector.push("{{this.subsector_id}}");
+            subsector.push("{{this.nombre}}");
+            subsector.push("{{this.sector_id}}");
+            listSubsector.push(subsector);  
+        {{/each}}
+
+        subsectorSelect.innerHTML = '<option value="" disabled selected>Seleccione un Subsector...</option>'
+        var newSubsector = [];
+        if (sectorSelecionado != '') {
+            for (var i = 0; i < listSubsector.length; i++) {
+                if (listSubsector[i][2] == sectorSelecionado) {
+                    subsector = [];
+                    subsector.push(listSubsector[i][1]);
+                    subsector.push(listSubsector[i][0]);
+                    newSubsector.push(subsector);
+                }
+
+            }
+        }
+        addOptions("subsector", newSubsector);
+
+    }
+
+    function addOptions(id, list) {
+        var selector = document.getElementById(id);
+        console.log(selector);  
+        for(var i = 0; i<list.length ; i++){
+            var opcion = document.createElement("option");
+            opcion.text = list[i][0];
+            opcion.value = list[i][1];
+            selector.appendChild(opcion);
+            
+        }
+    }    
+
+
+
+</script>

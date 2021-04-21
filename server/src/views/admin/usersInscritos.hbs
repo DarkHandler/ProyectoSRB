@@ -1,0 +1,39 @@
+<div class="conteiner-p-4">
+    <br>
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <table class="table table-light table-striped ">
+                <thead>
+                    <tr>
+                        <th scope="col">Rol</th>
+                        <th scope="col">Run</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Habitantes</th>
+                        <th scope="col">Domicilio</th>
+                        <th scope="col">email</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each userInscrito}}
+                    <tr>
+                        <td>{{this.rol}}</td>
+                        <td>{{this.run}}</td>
+                        <td>{{this.nombre}}</td>
+                        <td>{{this.telefono}}</td>
+                        <td>{{this.num_habitantes}}</td>
+                        <td>{{this.domicilio}}</td>
+                        <td>{{this.email}}</td>
+                        <td>
+                            <a class="btn btn-danger" href="Borrar/{{this.run}}">
+                                Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

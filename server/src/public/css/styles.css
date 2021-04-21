@@ -1,0 +1,33 @@
+
+.w3-allerta {
+  font-family: "Allerta Stencil", Sans-serif;
+}
+img {
+  border: 4px double rgb(0, 0, 0);
+}
+body {
+  background-image: url('https://cf.bstatic.com/images/hotel/max1024x768/306/30613020.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-size: 100% 100%; 
+}
+.all-browsers {
+  margin: 0;
+  padding: 5px;
+  background-color: rgba(20, 153, 8, 0.89);
+}
+
+.all-browsers > h1, .browser {
+  margin: 10px;
+  padding: 5px;
+}
+
+.browser {
+  background: rgba(255, 255, 255, 0.787);
+}
+
+.browser > h2, p {
+  margin: 4px;
+  font-size: 90%;
+}
+

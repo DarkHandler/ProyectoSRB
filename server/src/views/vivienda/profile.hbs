@@ -1,0 +1,18 @@
+<div class="container">
+    <br>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Mi perfil</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Datos:</h6>
+            <p class="card-text">Nombre: {{user.nombre}}</p>
+            <p class="card-text">Run: {{user.run}}</p>
+            <p class="card-text">Correo electronico: {{user.email}}</p>
+            <p class="card-text">Telefono: {{vivienda.telefono}}</p>
+            <p class="card-text">Rol: {{vivienda.rol}}</p>
+            <p class="card-text">Domicilio: {{vivienda.domicilio}}</p>
+            <p class="card-text">Habitantes de la vivienda: {{vivienda.num_habitantes}}</p>
+            <br>
+            <a href="/editarPerfil/{{user.run}}" class="btn btn-primary">Solicitar Cambio de Datos</a>
+        </div>
+    </div>
+</div>

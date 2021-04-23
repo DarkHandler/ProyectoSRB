@@ -42,7 +42,7 @@ def insertarVivienda():
         spamreader = csv.reader(csvfile, delimiter=',',quotechar='|')
         for row in spamreader: #recorrer lineas, que en si row seria el array con los elementos de la linea
             if(firstline==True):
-                mycursor.execute("insert into vivienda(rol,domicilio, num_habitantes, telefono, subsector_id,run) values ({},'{}',{},'{}',{},'{}')".format(row[0],row[1],row[2],row[3],row[4],row[5])) #ejecutar dml
+                mycursor.execute("insert into vivienda(rol,domicilio, num_habitantes, telefono, fecha_incorporacion, subsector_id,run) values ({},'{}',{},'{}','{}',{},'{}')".format(row[0],row[1],row[2],row[3],row[4],row[5],row[6])) #ejecutar dml
             else: firstline=True
     db.commit() #confirmar los cambios hechos a la base de datos
 

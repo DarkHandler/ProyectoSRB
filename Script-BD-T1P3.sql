@@ -31,7 +31,7 @@ rol int unsigned not null,
 domicilio varchar(100),
 num_habitantes int unsigned default 1,
 telefono varchar(12),
-fecha_incorporacion date not null default (current_date),
+fecha_incorporacion date not null,
 estado enum("inscrito","en espera") default "en espera" not null,
 subsector_id int unsigned not null,
 run varchar(12),
@@ -56,7 +56,7 @@ on delete cascade
 
 
 create table corroboracion(
-fecha_reciclaje date not null default (current_date),
+fecha_reciclaje date not null,
 rol int unsigned not null,
 foreign key (rol) references vivienda (rol)
 on update cascade

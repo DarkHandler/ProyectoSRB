@@ -23,7 +23,7 @@ router.post('/signup', isNotLoggedIn,async (req,res)=>{ //presiono el boton post
     datos.contrasena = await helpers.encryptPassword(datos.contrasena);
     //INSERCION DE DATOS
     await pool.query('INSERT INTO usuario(run,nombre,tipo_usuario,email,contrasena) VALUES (?,?,?,?,?)',[datos.run,datos.nombre,datos.tipo_usuario,datos.correo,datos.contrasena]); //a usuario
-    await pool.query('INSERT INTO vivienda(rol,domicilio,num_habitantes,telefono,subsector_id,run) VALUES (?,?,?,?,?,?)',[datos.rol,datos.domicilio,datos.num_habitantes,datos.telefono,datos.subsector,datos.run]); //a vivienda
+    await pool.query('INSERT INTO vivienda(rol,domicilio,num_habitantes,telefono,fecha_incorporacion,subsector_id,run) VALUES (?,?,?,?,curdate(),?,?)',[datos.rol,datos.domicilio,datos.num_habitantes,datos.telefono,datos.subsector,datos.run]); //a vivienda
     
     req.flash('success','Estaremos en contacto con usted para informarle del estado de su postulacion');
     res.redirect('/');   //aqui hay que enviarle alguna vista de alerta que diga se le estara comunicando de su postulacion

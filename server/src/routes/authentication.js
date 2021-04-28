@@ -22,11 +22,24 @@ router.post('/signup', isNotLoggedIn,async (req,res)=>{ //presiono el boton post
     //ENCRIPTACION
     datos.contrasena = await helpers.encryptPassword(datos.contrasena);
     //INSERCION DE DATOS
-    await pool.query('INSERT INTO usuario(run,nombre,tipo_usuario,email,contrasena) VALUES (?,?,?,?,?)',[datos.run,datos.nombre,datos.tipo_usuario,datos.correo,datos.contrasena]); //a usuario
-    await pool.query('INSERT INTO vivienda(rol,domicilio,num_habitantes,telefono,fecha_incorporacion,subsector_id,run) VALUES (?,?,?,?,curdate(),?,?)',[datos.rol,datos.domicilio,datos.num_habitantes,datos.telefono,datos.subsector,datos.run]); //a vivienda
-    
-    req.flash('success','Estaremos en contacto con usted para informarle del estado de su postulacion');
-    res.redirect('/');   //aqui hay que enviarle alguna vista de alerta que diga se le estara comunicando de su postulacion
+    try{
+        await pool.query('INSERT INTO usuario(run,nombre,tipo_usuario,email,contrasena) VALUES (?,?,?,?,?)',[datos.run,datos.nombre,datos.tipo_usuario,datos.correo,datos.contrasena]); //a usuario
+        try{
+            await pool.query('INSERT INTO vivienda(rol,domicilio,num_habitantes,telefono,fecha_incorporacion,subsector_id,run) VALUES (?,?,?,?,curdate(),?,?)',[datos.rol,datos.domicilio,datos.num_habitantes,datos.telefono,datos.subsector,datos.run]); //a vivienda
+            req.flash('success','Estaremos en contacto con usted para informarle del estado de su postulacion');
+            res.redirect('/');   //aqui hay que enviarle alguna vista de alerta que diga se le estara comunicando de su postulacion    
+        }catch(e){
+            if(e.code == 'ER_DUP_ENTRY'){
+                req.flash('danger','El rol ingresado ya existe');
+                res.redirect('/signup');
+            }
+        }
+    }catch(e){
+        if(e.code == 'ER_DUP_ENTRY'){
+            req.flash('danger','Este run ya esta registrado');
+            res.redirect('/signup');
+        }
+    }
 });
 
 
@@ -50,7 +63,9 @@ router.post('/login', isNotLoggedIn,(req, res, next)=>{
 router.get('/profile', isLoggedIn , isVivienda , async(req, res) => { //primero se ejecuta isLoggedIn, sino next
     const {user} = req;
     var vivienda = await pool.query("SELECT rol, domicilio, num_habitantes, telefono, fecha_incorporacion, subsector_id FROM vivienda where run=?",[user.run]);
-    vivienda = vivienda[0];
+    var recicla = await pool.query("SELECT count(*) as veces_recicla  FROM corroboracion WHERE rol=?",[user.rol]);
+    vivienda = [vivienda[0],recicla[0]];
+    //console.log(vivienda);
     res.render('vivienda/profile',{vivienda});
 });
 

@@ -4,7 +4,7 @@ module.exports = {
     database:{
         host:'localhost',
         user:'root',
-        password:'',
+        password:'private-T3rm1n4l',
         database:'DIMAO_SRB'
     }
 }

@@ -7,21 +7,53 @@
 
         <article class="browser w3-round-large">
             <h2>¿Qué es el reciclaje?</h2>
-            <p align="left">El reciclaje es el proceso mediante el cual los desechos se convierten en nuevos productos 
+            <p align="left">El reciclaje es el proceso mediante el cual los desechos se convierten en nuevos productos
                 o en recursos materiales con el que fabricar otros producto</p>
         </article>
         <article class="browser w3-round-large">
             <h2>Como Reciclar</h2>
-            <p align="left">Al momento de realizar tus comprar escoge el producto con menor envase o envases que puedas reciclar. Separa la basura orgánica de los envases.
-                 Separa los envases dependiendo de su material: plásticos, vidrio, aluminio o metal. Coloca cada envase en el contenedor que corresponda y listo, ya estas reciclando de manera adecuada.</p>
+            <p align="left">Al momento de realizar tus comprar escoge el producto con menor envase o envases que puedas
+                reciclar. Separa la basura orgánica de los envases.
+                Separa los envases dependiendo de su material: plásticos, vidrio, aluminio o metal. Coloca cada envase
+                en el contenedor que corresponda y listo, ya estas reciclando de manera adecuada.</p>
         </article>
         <br>
     </article>
 
 </div>
-
-<div class="container text-center">
-    <br>
-    <img src = "https://www.up.edu.pe/UP_Landing/Lannding_Inactivos/concurso-reciclaje_/img/fondo-reciclaje.png" class="w3-cyan img-fluid rounded">
+<br>
+<div class="container text-center w3-round-large bg-white">
+    <h1>Reciclaje del ultimo mes</h1>
+    
+    <div class="graph-container w3-round-large" style="background-color:#ffffff;">
+        <div id="myfirstchart" style="height: 250px;"></div>
+    </div>
+    <h1>Total: {{info.[1].[0].Total}} </h1>
 </div>
 
+</div>
+
+
+<script>
+    new Morris.Bar({
+        barSizeRatio: 0.30,
+        // ID of the element in which to draw the chart.
+        element: 'myfirstchart',
+        // Chart data records -- each entry in this array corresponds to a point on
+        // the chart.
+        data: [
+            {{#each info.[0]}}
+                { Fecha: '{{this.X}}', value: {{ this.Y }} },
+            {{/each}}
+        ],
+        // The name of the data record attribute that contains x-values.
+        xkey: 'Fecha',
+        // A list of names of data record attributes that contain y-values.
+        ykeys: ['value'],
+        hideHover: true, resize: true,
+        //parseTime: false,
+        // Labels for the ykeys -- will be displayed when you hover over the
+        // chart.
+        labels: ['Viviendas']
+        });
+</script>

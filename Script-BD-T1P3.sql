@@ -1,4 +1,4 @@
-create database DIMAO_SRB;
+#create database DIMAO_SRB;
 
 create table sector(
 sector_id int unsigned not null AUTO_INCREMENT,

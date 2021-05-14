@@ -10,7 +10,12 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed; 
   background-size: 100% 100%; 
+  min-height: 100vh !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
 .all-browsers {
   margin: 0;
   padding: 5px;

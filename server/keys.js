@@ -3,8 +3,8 @@
 module.exports = {
     database:{
         host:'localhost',
-        user:'root',
-        password:'private-T3rm1n4l',
+        user:'desa',
+        password:'Desatest01.',
         database:'DIMAO_SRB'
     }
 }

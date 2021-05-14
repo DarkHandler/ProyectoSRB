@@ -3,8 +3,8 @@ import csv
 
 db = mysql.connector.connect(
         host="localhost",
-        user="root",
-        passwd="private-T3rm1n4l",
+        user="desa",
+        passwd="Desatest01.",
         database="DIMAO_SRB",
         auth_plugin='mysql_native_password'
         )

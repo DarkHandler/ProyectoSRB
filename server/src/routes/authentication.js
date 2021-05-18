@@ -52,10 +52,20 @@ router.get('/login', isNotLoggedIn, (req, res)=>{
 
 router.post('/login', isNotLoggedIn,(req, res, next)=>{
     
-    passport.authenticate('local.login',{
-        successRedirect: '/profile',
-        failureRedirect: '/login',
-        failureFlash:true
+    passport.authenticate('local.login',(err,user,next)=>{
+       
+        if (err) { return next(err); } //si hay un error hace esto
+        if (!user) { return res.redirect('/login'); } //si no existe retorna esto
+        req.logIn(user, function(err) { //si hay usuario tira la funcion
+          if (err) { return next(err); }
+            if(user.tipo_usuario == "admin"){
+                return res.redirect('/dashboard');
+            }
+            if(user.tipo_usuario == "vivienda"){
+                return res.redirect('/profile');
+            }
+        });
+        
     })(req, res, next);
 });
 

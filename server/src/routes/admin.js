@@ -60,6 +60,9 @@ router.get('/realizaCambio/:run', isLoggedIn, isAdmin, async (req, res) =>{ //EN
     res.redirect('/borrarCambio/'+run);
 });
 
+router.get('/dashboard', isLoggedIn, isAdmin, async (req, res) =>{ 
+   res.render('admin/dashboard');
+});
 
 
 module.exports= router;

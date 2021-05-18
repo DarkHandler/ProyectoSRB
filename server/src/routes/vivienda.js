@@ -26,7 +26,7 @@ router.get('/alerta/:rol', async (req,res)=>{
     const { rol } = req.params;
     //NO PERMITIR INGRESAR ALERTAS MAS DE 1 VEZ A LA SEMANA
     await pool.query('INSERT INTO alerta (rol) values (?)',[rol]);
-    res.flash('success','La alerta ha sido enviada con exito');
+    req.flash('success','La alerta ha sido enviada con exito');
     res.redirect('/profile');
 });
 

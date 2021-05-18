@@ -2,24 +2,28 @@
     <br>
     <div class="row">
         <div class="col-md-4 mx-auto">
-            <div class="card text-center">
-                <div class="card-header">
+            <div class="card">
+                <div class="card-header text-center">
                     <h3>Solicitud de cambio de Datos</h3>
                 </div>
                 <div class="card-body">
                     <form action="/editarPerfil" method="POST">
                         <div class="form-group mb-2 ">
-                            <input type="text" class="form-control" name="run" placeholder="Run : 12345678-9" value="{{info.[2].run}}" autofocus>
+                            <label for="run" class="text-start fw-lighter">RUN</label>
+                            <input type="text" id="run" class="form-control" name="run" placeholder="Run : 12345678-9" value="{{info.[2].run}}" autofocus>
                         </div>
                         <div class="form-group mb-2">
-                            <input type="number" class="form-control" name="rol" placeholder="Rol de la Vivienda"
+                            <label for="rol" class="text-start fw-lighter">Rol</label>
+                            <input type="number" id="rol" class="form-control" name="rol" placeholder="Rol de la Vivienda"
                                 min="0" value="{{info.[2].rol}}">
                         </div>
                         <div class="form-group mb-2">
-                            <input type="text" class="form-control" name="domicilio" placeholder="Domicilio" value="{{info.[2].domicilio}}">
+                            <label for="dom" class="text-start fw-lighter">Domicilio</label>
+                            <input type="text" id="dom" class="form-control" name="domicilio" placeholder="Domicilio" value="{{info.[2].domicilio}}">
                         </div>
                         <div class="form-group mb-2">
-                            <input type="number" class="form-control" name="num_habitantes"
+                            <label for="hab" class="text-start fw-lighter">Habitantes</label>
+                            <input type="number" id="hab" class="form-control" name="num_habitantes"
                                 placeholder="Habitantes en la Vivienda" min="1" value="{{info.[2].num_habitantes}}">
                         </div>
                         <div class="form-group mb-2">

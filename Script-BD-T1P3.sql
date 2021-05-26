@@ -20,7 +20,7 @@ create table usuario(
 run varchar(12),
 nombre varchar(50),
 tipo_usuario enum("admin","vivienda","clave") not null,
-email varchar(40),
+email varchar(40) not null,
 contrasena varchar(60) not null,
 primary key (run)
 );
@@ -32,7 +32,7 @@ domicilio varchar(100),
 num_habitantes int unsigned default 1,
 telefono varchar(12),
 fecha_incorporacion date not null,
-estado enum("inscrito","en espera") default "en espera" not null,
+estado enum("inscrito","en espera","desinscrito") default "en espera" not null,
 subsector_id int unsigned not null,
 run varchar(12),
 primary key (rol),

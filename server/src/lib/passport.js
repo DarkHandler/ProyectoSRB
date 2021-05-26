@@ -22,7 +22,11 @@ passport.use('local.login', new LocalStrategy({
                 if(vivienda[0].estado == "en espera"){
                     done(null, false, req.flash('message','El estado de su postulacion aun esta pendiente')); //no le envio error ni usuario, pero le envio un mensaje..
                 }else{
-                    done(null, user, req.flash('success','Bienvenido '+user.nombre)); //le paso null como error
+                    if(vivienda[0].estado == "desinscrito"){
+                        done(null, false, req.flash('message','Usted se ha desinscrito del programa de reciclaje'));
+                    }else{
+                        done(null, user, req.flash('success','Bienvenido '+user.nombre)); //le paso null como error
+                    }
                 }
             }
             done(null, user, req.flash('success','Bienvenido '+user.nombre)); //le paso null como error

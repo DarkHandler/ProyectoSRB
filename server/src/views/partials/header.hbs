@@ -25,11 +25,12 @@
                            <i class="fas fa-user-circle"></i>
                         </a>
 
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="estiloDiv">
                             {{#ifequals user.tipo_usuario "vivienda"}}
                             <a class="dropdown-item" href="/profile">Mi perfil</a>
                             {{/ifequals}}
                             {{#ifequals user.tipo_usuario "admin"}}
+                            <a class="dropdown-item" href="/dashboard">Dashboard</a>
                             <a class="dropdown-item" href="/usersInscritos">Usuarios inscritos</a>
                             <a class="dropdown-item" href="/usersEspera">Postulantes</a>
                             <a class="dropdown-item" href="/usersModificar">Solicitudes de modificación</a>

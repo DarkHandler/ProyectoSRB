@@ -1,5 +1,5 @@
 #ignorar todo esto al push del repositorio
 #server/node_modules
 
-server/keys.js
+#server/keys.js
 Script-BD-T1P3.sql

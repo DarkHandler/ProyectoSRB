@@ -77,7 +77,7 @@ router.get('/alerta/:rol', isLoggedIn, isVivienda, async (req,res)=>{
 
 
 //GET DESINCRIBIRSE
-router.get('/desinscribirme/:run', isLoggedIn, isVivienda, async(req,res)=>{
+router.get('/desinscribirme', isLoggedIn, isVivienda, async(req,res)=>{
     res.render("vivienda/form-desinscripcion"); //implementar vista otro dia
 });
 

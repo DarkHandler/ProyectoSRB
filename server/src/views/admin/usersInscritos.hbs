@@ -2,6 +2,10 @@
     <br>
     <div class="row">
         <div class="col-md-10 mx-auto">
+            <a type="button" href="/Descagar/UsersInscritos" class="btn btn-dark" >Generar archivo</a>
+            <a class="btn btn btn-outline-secondary bg-dark" onclick="downanddown()" >Exportar a excel</a>
+            <a href="excels/usuariosInscritos.csv" id="descargar" style="display: none;" download="usuariosInscritos.csv"></a>
+            <a href="/eliminarArchivo" id="eliminame" style="display: none;"></a>
             <table class="table table-light table-striped ">
                 <thead>
                     <tr>
@@ -37,3 +41,10 @@
         </div>
     </div>
 </div>
+
+<script>
+    function downanddown(){
+        document.getElementById('descargar').click();
+        document.getElementById('eliminame').click();
+    }
+</script>

@@ -4,6 +4,7 @@ const nodemailer = require('nodemailer');
 
 const pool = require('../../database');
 const { isLoggedIn, isAdmin } = require('../lib/auth');
+const { convertArrayOfObjectsToCSV, downloadCSV } = require('../lib/tableToExcel');
 
 //instancia de nodemailer
 const transporter = nodemailer.createTransport({
@@ -18,7 +19,7 @@ const transporter = nodemailer.createTransport({
 
 
 router.get('/usersInscritos', isLoggedIn, isAdmin, async(req, res)=>{
-    const userInscrito = await pool.query('SELECT v.rol, v.run, u.nombre, v.telefono, v.num_habitantes, v.domicilio, u.email FROM (SELECT nombre, email, run FROM usuario) AS u INNER JOIN (SELECT rol, run, telefono, num_habitantes, domicilio FROM vivienda WHERE estado = "inscrito")AS v ON u.run = v.run');
+    const userInscrito = await pool.query('select * from userinscrito');
     //console.log(userInscrito);
     res.render('admin/usersInscritos', {userInscrito});
 });
@@ -208,10 +209,28 @@ router.get('/desinscribir/:run', isLoggedIn, isAdmin, async (req, res) =>{ //ENV
 
 
 router.get('/dashboard', isLoggedIn, isAdmin, async (req, res) =>{ 
-    const dataGraph = await pool.query('SELECT * FROM alerta');
+    //const dataGraph = await pool.query('select count(*) as cantidad, sec.nombre as sector from alerta as a inner join vivienda as v on a.rol=v.rol inner join subsector as subsec on v.subsector_id=subsec.subsector_id inner join sector as sec on sec.sector_id=subsec.sector_id where MONTH(fecha_alerta)=MONTH(now()) group by sec.sector_id');
     //console.log(dataGraph);
-    res.render('admin/dashboard',{dataGraph});
+    const {user} = req;
+    const mydata = await pool.query('select * from usuario where run=?',[user.run]);
+    const data=mydata[0];
+    res.render('admin/dashboard',{ data });
 });
 
+//descarga de archivo
+
+router.get('/Descagar/UsersInscritos', isLoggedIn, isAdmin, async (req, res) =>{
+    const userInscrito = await pool.query('SELECT * FROM userinscrito'); 
+    downloadCSV(userInscrito,"usuariosInscritos.csv",convertArrayOfObjectsToCSV);
+    res.redirect('/usersInscritos'); 
+});
+router.get('/eliminarArchivo',isLoggedIn,isAdmin, async(req,res)=>{
+    var fs = require('fs');
+    fs.unlinkSync('src/public/excels/usuariosInscritos.csv',function (err) {
+        if (err){return;}
+        //console.log('File deleted!');
+    });
+    res.redirect('/usersInscritos');
+});
 
 module.exports= router;

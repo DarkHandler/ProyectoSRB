@@ -45,7 +45,7 @@ on delete cascade
 );
 
 
-create table desincripcion(
+create table desinscripcion(
 run varchar(12),
 motivo text,
 primary key(run),

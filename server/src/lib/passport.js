@@ -34,7 +34,7 @@ passport.use('local.login', new LocalStrategy({
             done(null, false, req.flash('message','Los datos ingresados son incorrectos')); //no le envio error ni usuario, pero le envio un mensaje..
         }
     }else{ //si no encontre ningun usuario
-        return done(null, false, req.flash('message','Los datos ingresados son incorrectos'));
+        done(null, false, req.flash('message','Los datos ingresados son incorrectos'));
     }
 
 })); 

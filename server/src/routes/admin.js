@@ -19,7 +19,7 @@ const transporter = nodemailer.createTransport({
 
 
 router.get('/usersInscritos', isLoggedIn, isAdmin, async(req, res)=>{
-    const userInscrito = await pool.query('select * from userinscrito');
+    const userInscrito = await pool.query('select * from userinscrito_reciclo');
     //console.log(userInscrito);
     res.render('admin/usersInscritos', {userInscrito});
 });
@@ -211,7 +211,7 @@ router.get('/desinscribir/:run', isLoggedIn, isAdmin, async (req, res) =>{ //ENV
 
 //*******DESCARGAS DE ARCHIVO */
 router.get('/Descagar/UsersInscritos', isLoggedIn, isAdmin, async (req, res) =>{
-    const userInscrito = await pool.query('SELECT * FROM userinscrito'); 
+    const userInscrito = await pool.query('SELECT * FROM userinscrito_reciclo'); 
     downloadCSV(userInscrito,"usuariosInscritos.csv",convertArrayOfObjectsToCSV);
     res.redirect('/usersInscritos'); 
 });

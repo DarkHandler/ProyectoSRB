@@ -1,10 +1,19 @@
 <div>
-    <div class="w3-container w3-black w3-allerta">
-        <p class="w3-xxxlarge font-effect-shadow-multiple">Programa de reciclaje selectivo</p>
-        <img class="w3-display-topright"
-            src="https://images.vexels.com/media/users/3/127001/isolated/preview/48627cadfa4512893e51a713ad31fc23-flecha-de-reciclaje-01-svg-by-vexels.png"
-            alt="" width="100" height="100">
-        <p>Ilustre Municipalidad de San Antonio.</p>
+    <div class="backvmusgo">
+        <div class="row">
+           <div class="col-md-10">
+               <div class="row">
+                    <h1 class="ftitulo" style="color: white;size: 100px;">Programa de reciclaje selectivo</h1>
+               </div>
+               <div class="row">
+                    <h5 class="ftitulo" style="color: white;">Ilustre Municipalidad de San Antonio.</h5>
+               </div>
+           </div> 
+           <div class="col-md-2">               
+                <img class="imgdimao" src="https://images.vexels.com/media/users/3/127001/isolated/preview/48627cadfa4512893e51a713ad31fc23-flecha-de-reciclaje-01-svg-by-vexels.png"
+                     width="100" height="100">
+           </div>
+        </div>
     </div>
 
     <header class="p-2 bg-success text-white">
@@ -13,8 +22,8 @@
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
                     style="font-size: 16px;">
-                    <li><a href="/" class="nav-link px-2 text-dark"><i class="fas fa-home"></i> Inicio</a></li>
-                    <li><a href="/reciclaje" class="nav-link px-2 text-dark"> <i class="fas fa-recycle"></i> Reciclaje</a></li>
+                    <li><a href="/" class="nav-link px-2 bardimao"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="/reciclaje" class="nav-link px-2 bardimao"> <i class="fas fa-recycle"></i> Reciclaje</a></li>
                 </ul>
 
                 {{#if user}}
@@ -30,10 +39,10 @@
                             <a class="dropdown-item" href="/profile">Mi perfil</a>
                             {{/ifequals}}
                             {{#ifequals user.tipo_usuario "admin"}}
-                            <a class="dropdown-item" href="/dashboard">Dashboard</a>
                             <a class="dropdown-item" href="/usersInscritos">Usuarios inscritos</a>
                             <a class="dropdown-item" href="/usersEspera">Postulantes</a>
                             <a class="dropdown-item" href="/usersModificar">Solicitudes de modificación</a>
+                            <a class="dropdown-item" href="/usersAlertas/1">Avisos de reciclaje</a>
                             {{/ifequals}}
                             <a class="dropdown-item" href="/logout">Cerrar sesión <i class="fas fa-sign-out-alt"></i></a>
                         </div>
@@ -42,7 +51,7 @@
                 {{else}}
                 <div class="text-end">
                     <a type="button" href="/login" class="btn btn-outline-light me-2">Iniciar sesion</a>
-                    <a type="button" href="/signup" class="btn btn-warning">Postulación</a>
+                    <a type="button" href="/signup" class="btn btn-outline-light backazul">Postulación</a>
                 </div>
                 {{/if}}
             </div>

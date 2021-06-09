@@ -208,29 +208,44 @@ router.get('/desinscribir/:run', isLoggedIn, isAdmin, async (req, res) =>{ //ENV
 });
 
 
-router.get('/dashboard', isLoggedIn, isAdmin, async (req, res) =>{ 
-    //const dataGraph = await pool.query('select count(*) as cantidad, sec.nombre as sector from alerta as a inner join vivienda as v on a.rol=v.rol inner join subsector as subsec on v.subsector_id=subsec.subsector_id inner join sector as sec on sec.sector_id=subsec.sector_id where MONTH(fecha_alerta)=MONTH(now()) group by sec.sector_id');
-    //console.log(dataGraph);
-    const {user} = req;
-    const mydata = await pool.query('select * from usuario where run=?',[user.run]);
-    const data=mydata[0];
-    res.render('admin/dashboard',{ data });
-});
 
-//descarga de archivo
-
+//*******DESCARGAS DE ARCHIVO */
 router.get('/Descagar/UsersInscritos', isLoggedIn, isAdmin, async (req, res) =>{
     const userInscrito = await pool.query('SELECT * FROM userinscrito'); 
     downloadCSV(userInscrito,"usuariosInscritos.csv",convertArrayOfObjectsToCSV);
     res.redirect('/usersInscritos'); 
 });
-router.get('/eliminarArchivo',isLoggedIn,isAdmin, async(req,res)=>{
+router.get('/Descagar/UsersEspera', isLoggedIn, isAdmin, async (req, res) =>{
+    const userEspera = await pool.query('SELECT v.rol, v.run, u.nombre, v.telefono, v.num_habitantes, v.domicilio, u.email FROM (SELECT nombre, email, run FROM usuario) AS u INNER JOIN (SELECT rol, run, telefono, num_habitantes, domicilio FROM vivienda WHERE estado = "en espera")AS v ON u.run = v.run');
+    downloadCSV(userEspera,"usuariosEspera.csv",convertArrayOfObjectsToCSV);
+    res.redirect('/UsersEspera'); 
+});
+router.get('/Descagar/UsersAlertas', isLoggedIn, isAdmin, async (req, res) =>{
+    const userAlerta= await pool.query('SELECT v.run, u.nombre, v.domicilio, DATE_FORMAT(a.fecha_alerta,  "%Y-%m-%d" ) AS fecha_alerta FROM alerta AS a INNER JOIN vivienda AS v ON a.rol=v.rol INNER JOIN usuario AS u ON v.run=u.run');
+    downloadCSV(userAlerta,"usuariosAlertas.csv",convertArrayOfObjectsToCSV);
+    res.redirect('/usersAlertas'); 
+});
+/**TERMINO DE DESCARGAS DE ARCHIVO */
+
+
+router.get('/eliminarArchivo/:archivo',isLoggedIn,isAdmin, async(req,res)=>{
+    const {archivo} = req.params; //numero de pagina
     var fs = require('fs');
-    fs.unlinkSync('src/public/excels/usuariosInscritos.csv',function (err) {
+    fs.unlink('src/public/excels/'+archivo+'.csv',function (err) {
         if (err){return;}
         //console.log('File deleted!');
     });
     res.redirect('/usersInscritos');
+});
+
+router.get('/usersAlertas/:page', isLoggedIn, isAdmin, async(req,res)=>{
+    const {page} = req.params; //numero de pagina
+    const LIMIT = 10; //voy sacando de a 10 elementos en pagina
+    const OFFSET = (page-1) * LIMIT; //desde donde partire para sacar datos de la query
+    const data= await pool.query('SELECT v.run, u.nombre, v.domicilio, DATE_FORMAT(a.fecha_alerta,  "%Y-%m-%d" ) AS fecha_alerta FROM alerta AS a INNER JOIN vivienda AS v ON a.rol=v.rol INNER JOIN usuario AS u ON v.run=u.run LIMIT ?,?',[OFFSET, LIMIT]);
+    const total_query = await pool.query('SELECT COUNT(*) as total FROM alerta');
+    const defdata=[data, page, total_query];
+    res.render('admin/usersAlertas',{ defdata });
 });
 
 module.exports= router;

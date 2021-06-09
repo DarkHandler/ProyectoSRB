@@ -64,7 +64,7 @@ on delete cascade
 );
 
 create table alerta(
-fecha_alerta datetime not null default current_timestamp,
+fecha_alerta datetime not null default current_timestamp, -- quizas solo deberia ser un tipo date
 rol int unsigned not null,
 estado enum("pendiente","revisado") not null default "pendiente",
 foreign key (rol) references vivienda (rol)

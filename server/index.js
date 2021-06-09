@@ -64,7 +64,7 @@ app.use('/',require('./src/routes/admin'));
 
 
 //Public aqui van los archivos...
-app.use(express.static(path.join(__dirname,'src/public')))
+app.use(express.static(path.join(__dirname,'src/public')));
 
 
 

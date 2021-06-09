@@ -1,12 +1,8 @@
 
-.w3-allerta {
-  font-family: "Allerta Stencil", Sans-serif;
-}
 img {
   border: 4px double rgb(0, 0, 0);
 }
 body {
-  background-image: url('https://cf.bstatic.com/images/hotel/max1024x768/306/30613020.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed; 
   background-size: 100% 100%; 
@@ -14,6 +10,135 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.colorvmusgo {
+  color:#065535;
+}
+.colorvclaro{
+  color: #26a867;
+}
+.colorazul{
+  color: #2A71C6;
+}
+.colorngris{
+  color: #0a0a0a;;
+}
+.backvmusgo{
+  background-color:  #065535;
+}
+.backvclaro{
+  background-color:  #26a867;
+}
+.backazul{
+  background-color:  #2A71C6;
+}
+.backngris{
+  background-color:  #303030;
+}
+
+.ftitulo {
+  font-family: 'Hind Vadodara';
+}
+.ftexto{
+  font-family: 'sans-serif';
+}
+
+
+a.bardimao:link {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}/*
+a.bardimao:visited {
+}*/
+a.bardimao:hover {
+  color: #303030;
+  text-decoration: none;
+}
+a.bardimao:active {
+  color: #303030;
+  text-decoration: none;
+}
+
+/*imagenes*/
+img.imgdimao{
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
+}
+
+/*Bonton de imagen recilado*/
+/* Container needed to position the button. Adjust the width as needed */
+.contrecicly {
+  position: relative;
+  width: 100%;
+}
+/* Make the image responsive */
+.contrecicly img {
+  width: 100%;
+  height: auto;
+}
+/* Style the button and place it in the middle of the container/image */
+.contrecicly .btnre {
+  line-height: 1.3em;
+  z-index: 9999;
+  width: 150px;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  padding: 12px 24px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 50px;
+  transition: all .5s ease;
+  background-color: rgb(221, 221, 221);
+  color: #26a867;
+  border: 0px;
+}
+.contrecicly .btnre:hover {
+  color: rgb(32, 32, 32);
+}
+/*Termino de boton*/
+
+/*color de tarjetas*/
+.tarjeta-verde{
+  background-color: #26a867;
+}
+.btn-verde-os{
+  background-color: #065535;
+  
+}
+.btn-verde-cl{
+  background-color: #199463;
+}
+
+.tarjeta-naranja{
+  background-color: rgb(255, 102, 0);
+}
+button.btn-naranja-os{
+    background-color: rgb(206, 75, 0);
+}
+button.btn-naranja-os:hover{
+  background-color: rgb(255, 128, 55);
+}
+
+
+.tarjeta-rojo{
+  background-color: rgb(202, 0, 0);
+}
+.btn-rojo-os{
+  background-color: rgb(128, 0, 0);
+}
+
+
+h1,h2,h3,h4,h5{
+  font-family: 'Hind Vadodara';
+}
+
+p{
+  font-family: 'sans-serif';
 }
 
 .all-browsers {

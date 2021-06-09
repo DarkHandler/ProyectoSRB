@@ -5,7 +5,7 @@
             <a type="button" href="/Descagar/UsersInscritos" class="btn btn-dark" >Generar archivo</a>
             <a class="btn btn btn-outline-secondary bg-dark" onclick="downanddown()" >Exportar a excel</a>
             <a href="excels/usuariosInscritos.csv" id="descargar" style="display: none;" download="usuariosInscritos.csv"></a>
-            <a href="/eliminarArchivo" id="eliminame" style="display: none;"></a>
+            <a href="/eliminarArchivo/usuariosInscritos" id="eliminame" style="display: none;"></a>
             <table class="table table-light table-striped ">
                 <thead>
                     <tr>
@@ -15,7 +15,8 @@
                         <th scope="col">Telefono</th>
                         <th scope="col">Habitantes</th>
                         <th scope="col">Domicilio</th>
-                        <th scope="col">email</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Alertas Mes actual</th>
                         <th scope="col">Opciones</th>
                     </tr>
                 </thead>
@@ -29,6 +30,7 @@
                         <td>{{this.num_habitantes}}</td>
                         <td>{{this.domicilio}}</td>
                         <td>{{this.email}}</td>
+                        <td>{{this.num_alertas}}</td>
                         <td>
                             <a class="btn btn-danger" href="desinscribir/{{this.run}}">
                                 Eliminar

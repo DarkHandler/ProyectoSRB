@@ -3,26 +3,28 @@
     <div class="row">
         <div class="col">
             <div class="card" style="width: 18rem;">
-                <div class="card-body">
+                <div class="card-body tarjeta-verde text-white">
                     <h5 class="card-title" align="center"><b>Mi perfil</b></h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Datos:</h6>
-                    <p class="card-text">Nombre: {{user.nombre}}</p>
-                    <p class="card-text">Run: {{user.run}}</p>
-                    <p class="card-text">Correo electronico: {{user.email}}</p>
-                    <p class="card-text">Telefono: {{vivienda.[0].telefono}}</p>
-                    <p class="card-text">Rol: {{vivienda.[0].rol}}</p>
-                    <p class="card-text">Domicilio: {{vivienda.[0].domicilio}}</p>
-                    <p class="card-text">Habitantes de la vivienda: {{vivienda.[0].num_habitantes}}</p>
+                    <h6 class="card-subtitle mb-2">Datos:</h6>
+                    <h5 class="card-text ">Nombre: {{user.nombre}}</h5>
+                    <h5 class="card-text">Run: {{user.run}}</h5>
+                    <h5 class="card-text">Correo electronico: {{user.email}}</h5>
+                    <h5 class="card-text">Telefono: {{vivienda.[0].telefono}}</h5>
+                    <h5 class="card-text">Rol: {{vivienda.[0].rol}}</h5>
+                    <h5 class="card-text">Domicilio: {{vivienda.[0].domicilio}}</h5>
+                    <h5 class="card-text">Habitantes de la vivienda: {{vivienda.[0].num_habitantes}}</h5>
                     <br>
-                    <a href="/editarPerfil/{{user.run}}" class="btn btn-primary">Solicitar Cambio de Datos</a>
-                    <br>
-                    <br>
-                    <a href="/desinscribirme" class="btn btn-warning">Desinscribirme del programa</a>
+                    <div align="center">
+                        <a href="/editarPerfil/{{user.run}}" class="btn btn-success btn-verde-cl">Solicitar Cambio de Datos</a>
+                        <br>
+                        <br>
+                        <a href="/desinscribirme" class="btn btn-success btn-verde-os">Desinscribirme del programa</a>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col">
-            <div class="card" style="width: 18rem;">
+            <div class="card tarjeta-naranja text-white" style="width: 18rem;">
                 <div class="card-body mx-auto">
                     <h5 class="card-title" align="center"> <b>Veces que he reciclado <i class="fas fa-trash-alt"></i></b></h5>
                     <h1 align="center">{{vivienda.[1].veces_recicla}}</h1>
@@ -32,8 +34,8 @@
                         <div class="form-group mb-2 ">
                             <input type="text" class="form-control" name="codigo" autofocus>
                         </div>
-                        <div class="form-group mb-2">
-                            <button type="submit" class="btn btn-success">Validar código</button>
+                        <div class="form-group mb-2" align="center">
+                            <button type="submit" class="btn btn-naranja-os text-white">Validar código</button>
                         </div>
                     </form>
                     <br>
@@ -41,10 +43,12 @@
             </div>
         </div>
          <div class="col">
-            <div class="card" style="width: 18rem;">
+            <div class="card tarjeta-rojo" style="width: 18rem;">
                 <div class="card-body mx-auto">
-                    <h5 class="card-title" align="center"> <b>Alertas <i class="far fa-bell"></i></b></h5>
-                    <a href="/alerta/{{vivienda.[0].rol}}" class="btn btn-danger">Quiero enviar mi alerta de reciclaje</a>
+                    <h5 class="card-title text-white" align="center"> <b>Alertas <i class="far fa-bell"></i></b></h5>
+                    <h5 class="text-white">Este botón sirve para avisar a DIMAO que ya tienes reciclaje en casa listo para ir a buscar</h5>
+                    <h5 class="text-white">Esto no significa que el camión llegue a tu casa enseguida, si no que es solo para fines informativos</h5>
+                    <a href="/alerta/{{vivienda.[0].rol}}" class="btn btn-danger btn-rojo-os">Quiero enviar mi alerta de reciclaje</a>
                     <br>
                 </div>
             </div>

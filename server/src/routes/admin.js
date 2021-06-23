@@ -248,4 +248,27 @@ router.get('/usersAlertas/:page', isLoggedIn, isAdmin, async(req,res)=>{
     res.render('admin/usersAlertas',{ defdata });
 });
 
+//----------------------------
+router.get('/codigo', isLoggedIn, isAdmin, async(req, res)=>{
+    const Obj = await pool.query('SELECT * FROM codigo limit 1');
+    console.log(Obj);
+    var codigo;
+    try {
+        codigo = Obj[0].codigo;
+    } catch (error) {
+        codigo="NO EXISTE CODIGO"
+    }
+    res.render('admin/codigo',{codigo});
+});
+
+router.get('/generarCodigo', isLoggedIn, isAdmin, async (req, res)=>{
+    var RNG =  require('../lib/RNG.js');
+    var fecha =  new Date();
+    var rng =  new RNG(parseInt(fecha.getFullYear + (fecha.getMonth + 1) + fecha.getDate));
+    var codigo = await rng.generarCodigo();
+    await pool.query('DELETE FROM codigo WHERE 1');
+    await pool.query('Insert into codigo values( ? )',[codigo]);
+    res.redirect('/codigo');
+});
+
 module.exports= router;

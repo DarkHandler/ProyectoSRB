@@ -30,9 +30,9 @@
                     <h1 align="center">{{vivienda.[1].veces_recicla}}</h1>
 
                     <h5 class="card-title" align="center">Ingresar código de reciclaje</h5>
-                    <form action="/" method="POST">
+                    <form action="/validarCodigo" method="POST">
                         <div class="form-group mb-2 ">
-                            <input type="text" class="form-control" name="codigo" autofocus>
+                            <input type="text" id="codigo" class="form-control" name="codigo" autofocus>
                         </div>
                         <div class="form-group mb-2" align="center">
                             <button type="submit" class="btn btn-naranja-os text-white">Validar código</button>
@@ -45,11 +45,33 @@
          <div class="col">
             <div class="card tarjeta-rojo" style="width: 18rem;">
                 <div class="card-body mx-auto">
-                    <h5 class="card-title text-white" align="center"> <b>Alertas <i class="far fa-bell"></i></b></h5>
-                    <h5 class="text-white">Este botón sirve para avisar a DIMAO que ya tienes reciclaje en casa listo para ir a buscar</h5>
-                    <h5 class="text-white">Esto no significa que el camión llegue a tu casa enseguida, si no que es solo para fines informativos</h5>
-                    <a href="/alerta/{{vivienda.[0].rol}}" class="btn btn-danger btn-rojo-os">Quiero enviar mi alerta de reciclaje</a>
+                    <h5 class="card-title text-white" align="center"> <b>Aviso de reciclaje <i class="far fa-bell"></i></b></h5>
+                    <!--<a href="/alerta/{{vivienda.[0].rol}}" class="btn btn-danger btn-rojo-os">Quiero enviar mi alerta de reciclaje</a> -->
                     <br>
+                    <div align="center">
+                        <a type="button" class="btn btn-danger btn-rojo-os" data-toggle="modal" data-target="#exampleModal">Información</a>
+                    </div>
+                <br>
+                </div><!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Información:</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Este botón sirve para avisar a DIMAO que ya tienes reciclaje en casa listo para ir a buscar.
+                        Esto no significa que el camión llegue a tu casa enseguida, si no que es solo para fines informativos
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <a href="/alerta/{{vivienda.[0].rol}}" class="btn btn-danger btn-rojo-os">Quiero enviar mi alerta de reciclaje</a>
+                    </div>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>

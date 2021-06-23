@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../../database');
-const helpers = require('../lib/helpers');
+//const helpers = require('../lib/helpers');
 
 const passport = require('passport'); //voy a importar toda la biblioteca
 const { isLoggedIn, isVivienda, isNotLoggedIn } = require('../lib/auth'); //para saber si esta loggeado
@@ -20,7 +20,7 @@ router.post('/signup', isNotLoggedIn, async (req, res) => { //presiono el boton 
     const datos = req.body; //aca falta un dato para la tabla usuario -> el tipo usuario
     datos.tipo_usuario = "vivienda";
     //ENCRIPTACION
-    datos.contrasena = await helpers.encryptPassword(datos.contrasena);
+    //datos.contrasena = await helpers.encryptPassword(datos.contrasena);
     //INSERCION DE DATOS
     try {
         await pool.query('INSERT INTO usuario(run,nombre,tipo_usuario,email,contrasena) VALUES (?,?,?,?,?)', [datos.run, datos.nombre, datos.tipo_usuario, datos.correo, datos.contrasena]); //a usuario
@@ -74,7 +74,8 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
 router.get('/profile', isLoggedIn, isVivienda, async (req, res) => { //primero se ejecuta isLoggedIn, sino next
     const { user } = req;
     var vivienda = await pool.query("SELECT rol, domicilio, num_habitantes, telefono, fecha_incorporacion, subsector_id FROM vivienda where run=?", [user.run]);
-    var recicla = await pool.query("SELECT count(*) as veces_recicla  FROM corroboracion WHERE rol=?", [user.rol]);
+    const rol = await pool.query('select rol from vivienda where run = ? ',[user.run]);
+    var recicla = await pool.query("SELECT count(*) as veces_recicla  FROM corroboracion WHERE rol=?", [rol[0].rol]);
     vivienda = [vivienda[0], recicla[0]];
     //console.log(vivienda);
     res.render('vivienda/profile', { vivienda });
@@ -86,6 +87,8 @@ router.get('/logout', isLoggedIn, (req, res) => {
     req.logOut(); //passport nos da este metodo
     res.redirect('/login');
 });
+
+
 
 
 module.exports = router;

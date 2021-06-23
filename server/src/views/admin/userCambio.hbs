@@ -3,31 +3,35 @@
     <div class="row">
         <div class="col-sm-6 ">
             <br>
-            <div class="card">
+            <div class="card" style="border-color:#26a867;">
                 <div class="card-body">
-                    <h5 class="card-title">Datos Originales</h5>
-                    <p class="card-text">Run: {{info.[0].run}}</p>
-                    <p class="card-text">Rol: {{info.[0].rol}}</p>
-                    <p class="card-text">Domicilio: {{info.[0].domicilio}}</p>
-                    <p class="card-text">Habitantes: {{info.[0].num_habitantes}}</p>
-                    <p class="card-text">Sub Sector: {{info.[1].subsector}}</p>
-                    <p class="card-text">Sector: {{info.[1].sector}}</p>
-                    <a href="/borrarCambio/{{info.[0].run}}" class="btn btn-primary">Mantener Datos Originales</a>
+                    <h4 class="card-title"> <b>Datos Originales</b></h4>
+                    <ul class="list-unstyled mb-0">
+                        <li class="card-text">Run: {{info.[0].run}}</li>
+                        <li class="card-text">Rol: {{info.[0].rol}}</li>
+                        <li class="card-text">Domicilio: {{info.[0].domicilio}}</li>
+                        <li class="card-text">Habitantes: {{info.[0].num_habitantes}}</li>
+                        <li class="card-text">Sub Sector: {{info.[1].subsector}}</li>
+                        <li class="card-text">Sector: {{info.[1].sector}}</li>
+                    </ul>
+                    <a href="/borrarCambio/{{info.[0].run}}" class="btn btn-verdeclaro">Mantener Datos Originales</a>
                 </div>
             </div>
         </div>
         <div class="col-sm-6">
             <br>
-            <div class="card">
+            <div class="card" style="border-color:#26a867;">
                 <div class="card-body">
-                    <h5 class="card-title">Solicitud de cambio</h5>
-                    <p class="card-text">Run: {{info.[2].run}}</p>
-                    <p class="card-text">Rol: {{info.[2].rol}}</p>
-                    <p class="card-text">Domicilio: {{info.[2].domicilio}}</p>
-                    <p class="card-text">Habitantes: {{info.[2].num_habitantes}}</p>
-                    <p class="card-text">Sub Sector: {{info.[3].subsector}}</p>
-                    <p class="card-text">Sector: {{info.[3].sector}}</p>
-                    <a href="/realizaCambio/{{info.[0].run}}" class="btn btn-primary">Confirmar Cambio Datos</a>
+                    <h4 class="card-title"> <b> Solicitud de cambio</b></h4>
+                    <ul class="list-unstyled mb-0">
+                        <li class="card-text">Run: {{info.[2].run}}</li>
+                        <li class="card-text">Rol: {{info.[2].rol}}</li>
+                        <li class="card-text">Domicilio: {{info.[2].domicilio}}</li>
+                        <li class="card-text">Habitantes: {{info.[2].num_habitantes}}</li>
+                        <li class="card-text">Sub Sector: {{info.[3].subsector}}</li>
+                        <li class="card-text">Sector: {{info.[3].sector}}</li>
+                    </ul>
+                    <a href="/realizaCambio/{{info.[0].run}}" class="btn btn-verdeclaro">Confirmar Cambio Datos</a>
                 </div>
             </div>
         </div>

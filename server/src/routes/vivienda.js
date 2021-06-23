@@ -123,4 +123,20 @@ router.post('/desinscribirme', isLoggedIn, isVivienda, async (req,res)=>{ //form
     res.send("hola");
 });
 
+router.post('/validarCodigo', isLoggedIn, isVivienda, async (req, res)=>{
+    const entrada = req.body.codigo;
+    const { user } = req;
+    const fecha = new Date();
+    fecha.toISOString().split('T')[0];
+    var realCodigo = await pool.query('SELECT * FROM codigo limit 1');
+    if (realCodigo[0].codigo==entrada) {
+        const rol = await pool.query('select rol from vivienda where run = ? ',[user.run]);
+        await pool.query('insert into corroboracion(fecha_reciclaje,rol) values( ? , ? )', [ fecha, rol[0].rol ]);
+        req.flash('success','Ingresaste el codigo correctamente');
+    }else{
+        req.flash('danger','Ingresaste el codigo INcorrectamente');
+    }
+    res.redirect('/profile');
+});
+
 module.exports= router;

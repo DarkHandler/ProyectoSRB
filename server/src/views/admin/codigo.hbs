@@ -1,0 +1,19 @@
+<div class="conteiner">
+    <br>
+    <div class="row">
+        <div class="col"></div>
+        <div class="card tarjeta-naranja text-white" style="width: 18rem;">
+            <div class="card-body mx-auto">
+                <h5 class="card-title" align="center">AQUI ESTA TU CODIGO:</h5>
+                {{#if codigo}}
+                <h1 align="center">{{codigo}}</h1>
+                {{/if}}
+                <div class="form-group mb-2" align="center">
+                    <a type="button" href="/generarCodigo" class="btn btn-naranja-os text-white" >Generar codigo</a>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>

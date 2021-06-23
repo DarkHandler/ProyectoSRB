@@ -19,7 +19,7 @@ on delete cascade
 create table usuario(
 run varchar(12),
 nombre varchar(50),
-tipo_usuario enum("admin","vivienda","clave") not null,
+tipo_usuario enum("admin","vivienda") not null,
 email varchar(40) not null,
 contrasena varchar(60) not null,
 primary key (run)

@@ -27,6 +27,9 @@ body {
 .backvmusgo{
   background-color:  #065535;
 }
+.backvwhite{
+  background-color:  #ffffff;
+}
 .backvclaro{
   background-color:  #26a867;
 }
@@ -37,12 +40,7 @@ body {
   background-color:  #303030;
 }
 
-.ftitulo {
-  font-family: 'Hind Vadodara';
-}
-.ftexto{
-  font-family: 'sans-serif';
-}
+
 
 
 a.bardimao:link {
@@ -114,6 +112,16 @@ img.imgdimao{
   background-color: #199463;
 }
 
+a.btn-verdeclaro{
+  color: white;
+  background-color: #199463;
+}
+a.btn-verdeclaro:hover{
+  color: white;
+  background-color: #065535;
+}
+
+
 .tarjeta-naranja{
   background-color: rgb(255, 102, 0);
 }
@@ -122,6 +130,21 @@ button.btn-naranja-os{
 }
 button.btn-naranja-os:hover{
   background-color: rgb(255, 128, 55);
+}
+
+a.btn-naranja-os{
+  background-color: rgb(206, 75, 0);
+}
+a.btn-naranja-os:hover{
+background-color: rgb(255, 128, 55);
+}
+
+a.btn-gris-os{
+  color: white;
+  background-color: rgb(77, 77, 77);
+}
+a.btn-gris-os:hover{
+color:#26a867;
 }
 
 
@@ -133,13 +156,6 @@ button.btn-naranja-os:hover{
 }
 
 
-h1,h2,h3,h4,h5{
-  font-family: 'Hind Vadodara';
-}
-
-p{
-  font-family: 'sans-serif';
-}
 
 .all-browsers {
   margin: 0;

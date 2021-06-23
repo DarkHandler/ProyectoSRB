@@ -1,15 +1,16 @@
-<div class="conteiner-p-4">
+<div>
     <br>
     <div class="row">
-        <div class="col-md-10 mx-auto">
-            <a type="button" href="/Descagar/UsersInscritos" class="btn btn-dark" >Generar archivo</a>
-            <a class="btn btn btn-outline-secondary bg-dark" onclick="downanddown()" >Exportar a excel</a>
+        <div class="col-md-11 mx-auto">
+            <a type="button" href="/Descagar/UsersInscritos" class="btn btn-gris-os" >Generar archivo</a>
+            <a class="btn btn-gris-os" onclick="downanddown()" >Exportar a excel</a>
             <a href="excels/usuariosInscritos.csv" id="descargar" style="display: none;" download="usuariosInscritos.csv"></a>
             <a href="/eliminarArchivo/usuariosInscritos" id="eliminame" style="display: none;"></a>
-            <table class="table table-light table-striped ">
+            <table class="table table-light table-striped">
                 <thead>
-                    <tr>
+                    <tr align="center">
                         <th scope="col">Rol</th>
+                        <th scope="col">Contrasena</th>
                         <th scope="col">Run</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Telefono</th>
@@ -23,8 +24,9 @@
                 </thead>
                 <tbody>
                     {{#each userInscrito}}
-                    <tr>
+                    <tr align="center">
                         <td>{{this.rol}}</td>
+                        <td>{{this.contrasena}}</td>
                         <td>{{this.run}}</td>
                         <td>{{this.nombre}}</td>
                         <td>{{this.telefono}}</td>

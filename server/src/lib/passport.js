@@ -15,7 +15,8 @@ passport.use('local.login', new LocalStrategy({
     const rows = await pool.query('SELECT * FROM usuario WHERE run= ?',[username]); //reviso si esta mi usuario
     if(rows.length > 0){ //si tengo al usuario
         const user = rows[0]; //obtener usuario que encontre
-        const validPassword = await helpers.matchPassword(password, user.contrasena); //comparo la contrasena
+        //const validPassword = await helpers.matchPassword(password, user.contrasena); //comparo la contrasena
+        const validPassword = password == user.contrasena;
         if(validPassword){ //si es correcta la password
             if(user.tipo_usuario == "vivienda"){
                 const vivienda = await pool.query('SELECT estado FROM vivienda WHERE run=?',[user.run]);

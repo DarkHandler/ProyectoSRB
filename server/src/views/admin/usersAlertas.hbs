@@ -2,26 +2,24 @@
     <br>
     <div class="row">
         <div class="col-md-11 mx-auto">
-            <a style="margin: 0px 0px 0px 10px;" type="button" href="/Descagar/UsersInscritos" class="btn btn-gris-os">Generar archivo</a>
-            <a class="btn btn-gris-os" onclick="downanddown()">Exportar a excel</a>
-            <a href="excels/usuariosInscritos.csv" id="descargar" style="display: none;"
-                download="usuariosInscritos.csv"></a>
-            <a href="/eliminarArchivo/usuariosInscritos" id="eliminame" style="display: none;"></a>
+            <a type="button" href="/Descagar/UsersAlertas" class="btn btn-dark">Generar archivo</a>
+            <a class="btn btn btn-outline-secondary bg-dark" onclick="downanddown()">Exportar a excel</a>
+            <a href="/excels/usuariosAlertas.csv" id="descargar" style="display: none;"
+                download="usuariosAlertas.csv"></a>
+            <a href="/eliminarArchivo/usuariosAlertas" id="eliminame" style="display: none;"></a>
             <table class="table table-light table-striped ">
                 <thead>
-                    <tr align="center">
-                        <th scope="col">Run</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Domicilio</th>
-                        <th scope="col">Fecha de aviso</th>
+                    <tr>
+                        <th scope="col">Rol de la vivienda</th>
+                        <th scope="col">Estado de la alerta</th>
+                        <th scope="col">Fecha de la alerta</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each defdata.[0]}}
-                    <tr align="center">
-                        <td>{{this.run}}</td>
-                        <td>{{this.nombre}}</td>
-                        <td>{{this.domicilio}}</td>
+                    <tr>
+                        <td>{{this.rol}}</td>
+                        <td>{{this.estado}}</td>
                         <td>{{this.fecha_alerta}}</td>
                     </tr>
                     {{/each}}

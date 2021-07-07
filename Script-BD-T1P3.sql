@@ -20,7 +20,7 @@ create table usuario(
 run varchar(12),
 nombre varchar(50),
 tipo_usuario enum("admin","vivienda") not null,
-email varchar(40) not null,
+email varchar(40),
 contrasena varchar(60) not null,
 primary key (run)
 );
@@ -85,3 +85,23 @@ foreign key (run) references usuario (run)
 on update cascade
 on delete cascade
 );
+
+
+--Tabla de codigo
+CREATE TABLE codigo( codigo varchar(5) not null UNIQUE );
+
+
+--Vista PARA LA VIEW USUARIOS INSCRITOS
+create view userinscrito as SELECT v.rol, u.contrasena, v.run, u.nombre, v.telefono, v.num_habitantes, v.domicilio, u.email,
+COALESCE(s.num_alertas, 0) AS num_alertas FROM (SELECT nombre, contrasena, email, run FROM usuario) AS u INNER JOIN (SELECT rol, run
+, telefono, num_habitantes, domicilio FROM vivienda WHERE estado = "inscrito") AS v ON u.run = v.run LEFT JOIN (SELECT x.run, count(*) AS num_alertas FROM (SELECT v.run, a.fecha_alerta FROM alerta AS a INNER JOIN vivienda AS v ON a.rol=v.rol WHERE MONTH(a.fecha_alerta)=MONTH(CURDATE())) as x group by x.run) AS s ON v.run=s.run;
+
+--Vista numero de reciclajes
+CREATE VIEW num_reciclaje_vivienda AS SELECT rol,COUNT(fecha_reciclaje) AS 'recicló' FROM corroboracion GROUP BY rol;
+
+--Vista para la seleccion de numero de reciclaje en esta
+CREATE VIEW userinscrito_reciclo AS SELECT userinscrito.rol, contrasena,run,nombre,telefono,num_habitantes,domicilio,email,num_alertas,recicló FROM userinscrito INNER JOIN num_reciclaje_vivienda on num_reciclaje_vivienda.rol = userinscrito.rol;
+
+--Vista alertas
+CREATE VIEW vistaAlertas AS SELECT * FROM alerta;
+

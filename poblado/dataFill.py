@@ -53,7 +53,7 @@ def insertarSector():
         spamreader = csv.reader(csvfile, delimiter=',',quotechar='|')
         for row in spamreader: #recorrer lineas, que en si row seria el array con los elementos de la linea
             if(firstline==True):
-                mycursor.execute("insert into sector(nombre) values ('{}')".format(row[1])) #ejecutar dml
+                mycursor.execute("insert into sector(sector_id,nombre) values ({},'{}')".format(row[0],row[1])) #ejecutar dml
             else: firstline=True
     db.commit() #confirmar los cambios hechos a la base de datos
 
@@ -91,21 +91,21 @@ def insertarCorroboracion():
     db.commit() #confirmar los cambios hechos a la base de datos
 
 #desincripcion
-def insertarDesincripcion():
+def insertarDesinscripcion():
     firstline=False
     with open(path7, newline='') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',',quotechar='|')
         for row in spamreader: #recorrer lineas, que en si row seria el array con los elementos de la linea
             if(firstline==True):
-                mycursor.execute("insert into desincripcion(run,motivo) values ('{}','{}')".format(row[0],row[1])) #ejecutar dml
+                mycursor.execute("insert into desinscripcion(run,motivo) values ('{}','{}')".format(row[0],row[1])) #ejecutar dml
             else: firstline=True
     db.commit() #confirmar los cambios hechos a la base de datos
 
-insertarSector()
-insertarSubsector()
-insertarUsuario()
-insertarVivienda()
-insertarAlerta()
-insertarCorroboracion()
-insertarDesincripcion()
+#insertarSector()
+#insertarSubsector()
+#insertarUsuario()
+#insertarVivienda()
+#insertarAlerta()
+#insertarCorroboracion()
+insertarDesinscripcion()
 db.close()

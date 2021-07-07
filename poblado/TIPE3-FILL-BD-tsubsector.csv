@@ -1,62 +1,13 @@
 id_subsector,nombre,id_sector
-1,Corrocosan y Bello Horizonte,1
-2,Pelancura,1
-3,El Faro,1
-4,Faro Panul,1
-5,El Coral,1
-6,Ampliacion Santa Laura,1
-7,Punta Diamante,1
-8,21 de mayo,1
-9,Santa. Laura,1
-10,Bernardo Ohiggins,1
-11,Hermanos Carrera,1
-12,Plantacion Fiscal,1
-13,Miguel Solari,1
-14,El Carmen,1
-15,Villa Mirador de San Antonio,1
-16,Miguel Stuvens,2
-17,Vista Hermosa,2
-18,Rene Schneider,2
-19,Victor Domingo Silva,2
-20,Bellavista San Antonio de Las Bodegas,2
-21,Felix Vergara,2
-22,Villa Holanda,2
-23,Bello Horizonte II,2
-24,Bellavista San,2
-25,Antonio de Las Bodegas,2
-26,San Antonio de Las Bodegas,2
-27,Brasil,2
-28,Padre Joseph,2
-29,Estrella de Belen,2
-30,Villa Padre Angel,2
-31,Bruselas I,2
-32,Bruselas II,2
-33,Planicies de Bellavista,2
-34,Horizontes de Bellavista,2
-35,Los Llanos de Bellavista,2
-36,Aguas Saladas I y II,2
-37,Copihues Blancos,2
-38,El Bosque,2
-39,Conquistadores y Villa El Sol,2
-40,Sector Cerro Arena,3
-41,Quinta Placilla,3
-42,Los Olivos,3
-43,San Miguel,3
-44,Miraflores,3
-45,Nueva Dolores,3
-46,El Salvador,3
-47,12 de Noviembre,3
-48,Montemar Arena,3
-49,Damiana Carrera,3
-50,Miramar,3
-51,Barrio Residencial Miramar,3
-52,Vivero Forestal,3
-53,Diego Portales,3
-54,Movilizadores Portuarios,3
-55,Villa El Litoral,3
-56,Villa Las Rosas,3
-57,Obreros Portuarios,3
-58,Augusto Elgueta,3
-59,Condominio Santa Lucia,3
-60,Condominio El Bosque,3
-61,Altos de Miramar,3
+1,Bellavista,1
+2,Cerro Alegre,1
+3,San Antonio,1
+4,Placilla,1
+5,Cerro Arena,1
+6,Villa Italia,2
+7,Barrancas Alto,2
+8,30 de Marzo,2
+9,Barrancas,2
+10,Las Dunas,2
+11,Llolleo,3
+12,Llolleo Alto,3

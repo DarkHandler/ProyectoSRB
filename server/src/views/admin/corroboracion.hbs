@@ -7,22 +7,24 @@
             <a href="/excels/reciclaje.csv" id="descargar" style="display: none;"
                 download="reciclaje.csv"></a>
             <a href="/eliminarArchivo/reciclaje" id="eliminame" style="display: none;"></a>
-            <table class="table table-light table-striped ">
-                <thead>
-                    <tr>
-                        <th scope="col">Rol de la vivienda</th>
-                        <th scope="col">Fecha de reciclaje</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each reciclaje}}
-                    <tr>
-                        <td>{{this.rol}}</td>
-                        <td>{{this.fecha_reciclaje}}</td>
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-info table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Rol de la vivienda</th>
+                            <th scope="col">Fecha de reciclaje</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each reciclaje}}
+                        <tr>
+                            <td>{{this.rol}}</td>
+                            <td>{{this.fecha_reciclaje}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

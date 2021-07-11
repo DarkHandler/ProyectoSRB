@@ -273,6 +273,12 @@ router.get('/usersAlertas/:page', isLoggedIn, isAdmin, async (req, res) => {
     res.render('admin/usersAlertas', { defdata });
 });
 
+//ACTUALIZACION DE ESTADO DE LA ALERTA
+router.get('/actualizarAlerta/:rol',(req ,res)=>{
+    const { rol } = req.params;
+    res.redirect('usersAlertas/1');
+});
+
 //----------------------------
 router.get('/codigo', isLoggedIn, isAdmin, async (req, res) => {
     const Obj = await pool.query('SELECT * FROM codigo limit 1');
@@ -294,6 +300,10 @@ router.get('/generarCodigo', isLoggedIn, isAdmin, async (req, res) => {
     await pool.query('DELETE FROM codigo WHERE 1');
     await pool.query('Insert into codigo values( ? )', [codigo]);
     res.redirect('/codigo');
+});
+
+router.get('/exportador',isLoggedIn, isAdmin, async (req, res)=>{
+    res.render('admin/exportador');
 });
 
 module.exports = router;

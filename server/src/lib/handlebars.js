@@ -10,6 +10,12 @@ helpers.ifequals = (arg1, arg2, options) => {
     return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
 };
 
+helpers.ifequalsParam = (arg1, arg2, arg3, options) => {
+    this.rol=arg3;//le asigno el rol
+    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+};
+
+
 helpers.eachpage = (page, total, options) => {
     var inicio = parseInt(page);
     var totalpagina, fin;

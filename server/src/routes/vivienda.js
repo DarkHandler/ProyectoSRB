@@ -69,9 +69,15 @@ router.post('/editarPerfil', isLoggedIn, isVivienda,  async (req,res)=>{ //envia
 //ALERTA
 router.get('/alerta/:rol', isLoggedIn, isVivienda, async (req,res)=>{
     const { rol } = req.params;
-    //NO PERMITIR INGRESAR ALERTAS MAS DE 1 VEZ A LA SEMANA
-    await pool.query('INSERT INTO alerta (rol) values (?)',[rol]);
-    req.flash('success','La alerta ha sido enviada con exito');
+    const fecha = new Date();
+    fecha.toISOString().split('T')[0];
+    const aux = await pool.query('SELECT * FROM alerta WHERE rol = ? AND (fecha_alerta BETWEEN DATE_SUB( ? ,INTERVAL 1 WEEK) AND ? );',[rol,fecha,fecha]);
+    if (aux==[]) {
+        await pool.query('INSERT INTO alerta (rol) values (?)',[rol]);
+        req.flash('success','La alerta ha sido enviada con exito');
+    }else{
+        req.flash('danger','No se puede mandar una alerta tan segido');
+    }
     res.redirect('/profile');
 });
 
@@ -128,11 +134,16 @@ router.post('/validarCodigo', isLoggedIn, isVivienda, async (req, res)=>{
     const { user } = req;
     const fecha = new Date();
     fecha.toISOString().split('T')[0];
+    const rol = await pool.query('select rol from vivienda where run = ? ',[user.run]);
     var realCodigo = await pool.query('SELECT * FROM codigo limit 1');
+    const aux = await pool.query('SELECT * FROM corroboracion WHERE rol = ? AND (fecha_reciclaje BETWEEN DATE_SUB( ? ,INTERVAL 1 WEEK) AND ? );',[rol[0].rol,fecha,fecha]);
     if (realCodigo[0].codigo==entrada) {
-        const rol = await pool.query('select rol from vivienda where run = ? ',[user.run]);
-        await pool.query('insert into corroboracion(fecha_reciclaje,rol) values( ? , ? )', [ fecha, rol[0].rol ]);
-        req.flash('success','Ingresaste el codigo correctamente');
+        if (aux == []) {
+            await pool.query('insert into corroboracion(fecha_reciclaje,rol) values( ? , ? )', [ fecha, rol[0].rol ]);
+            req.flash('success','Ingresaste el codigo correctamente');
+        } else {
+            req.flash('danger','no puede ingresar el codigo mas de una vez'); 
+        }
     }else{
         req.flash('danger','Ingresaste el codigo INcorrectamente');
     }

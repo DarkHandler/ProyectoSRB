@@ -1,5 +1,8 @@
-<div class="conteiner-p-4">
+<div class="conteiner p-4">
     <br>
+    <div class="row">
+        <h3 class="text-center">AVISOS DE RECICLAJE DE LAS VIVIENDAS</h3>
+    </div>
     <div class="row">
         <div class="col-md-11 mx-auto">
             <a type="button" href="/Descagar/UsersAlertas" class="btn btn-dark">Generar archivo</a>
@@ -9,11 +12,12 @@
             <a href="/eliminarArchivo/usuariosAlertas" id="eliminame" style="display: none;"></a>
             <div class="table-responsive">
                 <table class="table table-info table-striped table-hover">
-                    <thead>
+                    <thead >
                         <tr>
                             <th scope="col">Rol de la vivienda</th>
                             <th scope="col">Estado de la alerta</th>
                             <th scope="col">Fecha de la alerta</th>
+                            <th scope="col">Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -22,6 +26,13 @@
                             <td>{{this.rol}}</td>
                             <td>{{this.estado}}</td>
                             <td>{{this.fecha_alerta}}</td>
+                            <td>
+                                {{#ifequalsParam this.estado "pendiente" this.rol }}
+                                <a class="btn btn-success" href="/actualizarAlerta/{{this.rol}}">
+                                    Marcar como revisado
+                                </a>
+                                {{/ifequalsParam}}
+                            </td>
                         </tr>
                         {{/each}}
                     </tbody>

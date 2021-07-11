@@ -32,7 +32,7 @@ router.get('/usersEspera', isLoggedIn, isAdmin, async (req, res) => {
 
 router.get('/corroboracion', isLoggedIn, isAdmin, async(req, res)=>{
     const reciclaje = await pool.query('select rol,DATE_FORMAT(fecha_reciclaje,  "%Y-%m-%d" ) as fecha_reciclaje from corroboracion');
-    console.log(reciclaje);
+    //console.log(reciclaje);
     res.render('admin/corroboracion', {reciclaje});
 });
 
@@ -274,15 +274,16 @@ router.get('/usersAlertas/:page', isLoggedIn, isAdmin, async (req, res) => {
 });
 
 //ACTUALIZACION DE ESTADO DE LA ALERTA
-router.get('/actualizarAlerta/:rol',(req ,res)=>{
+router.get('/actualizarAlerta/:rol', async (req ,res)=>{
     const { rol } = req.params;
-    res.redirect('usersAlertas/1');
+    await pool.query('UPDATE alerta SET estado="revisado" WHERE rol=?',[rol]);
+    res.redirect('/usersAlertas/1');
 });
 
 //----------------------------
 router.get('/codigo', isLoggedIn, isAdmin, async (req, res) => {
     const Obj = await pool.query('SELECT * FROM codigo limit 1');
-    console.log(Obj);
+    //console.log(Obj);
     var codigo;
     try {
         codigo = Obj[0].codigo;

@@ -22,16 +22,17 @@ router.get('/editarPerfil/:run', isLoggedIn, isVivienda, async (req, res) =>{
     const consulta1 = await pool.query('SELECT * FROM subsector');
     const consulta2 = await pool.query('SELECT * FROM sector');
     const info = [consulta1, consulta2, datos[0]];
-    console.log(info[2]);
+    //console.log(info[2]);
     res.render('vivienda/editarPerfil',{info});
 });
 
 router.post('/editarPerfil', isLoggedIn, isVivienda,  async (req,res)=>{ //enviar correo
     const newdatos = req.body;
-    await pool.query('INSERT INTO solicitud_modificacion (run, estado, rol, domicilio, num_habitantes, subsector_id) VALUES (?,"en espera",?,?,?,?)', [newdatos.run,newdatos.rol,newdatos.domicilio,newdatos.num_habitantes,newdatos.subsector]);
+    const { run } = req.user; 
+    await pool.query('INSERT INTO solicitud_modificacion (run, estado, rol, domicilio, num_habitantes, subsector_id) VALUES (?,"en espera",?,?,?,?)', [run,newdatos.rol,newdatos.domicilio,newdatos.num_habitantes,newdatos.subsector]);
     const dato0 = await pool.query('SELECT nombre FROM subsector WHERE subsector_id =?', [newdatos.subsector]);
-    const dato1 = await pool.query('SELECT email FROM usuario WHERE run =?', [newdatos.run]);
-    const { email } = dato1[0]
+    const dato1 = await pool.query('SELECT email FROM usuario WHERE run =?', [run]);
+    const { email } = dato1[0];
     const { nombre } = dato0[0];
 
     contentHTML = `

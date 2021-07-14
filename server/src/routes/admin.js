@@ -1,3 +1,4 @@
+const { RSA_NO_PADDING } = require('constants');
 const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
@@ -31,7 +32,7 @@ router.get('/usersEspera', isLoggedIn, isAdmin, async (req, res) => {
 });
 
 router.get('/corroboracion', isLoggedIn, isAdmin, async(req, res)=>{
-    const reciclaje = await pool.query('select rol,DATE_FORMAT(fecha_reciclaje,  "%Y-%m-%d" ) as fecha_reciclaje from corroboracion');
+    const reciclaje = await pool.query('select v.run,v.telefono,c.rol,DATE_FORMAT(c.fecha_reciclaje,  "%Y-%m-%d" ) as fecha_reciclaje from corroboracion as c inner join vivienda as v on c.rol=v.rol');
     //console.log(reciclaje);
     res.render('admin/corroboracion', {reciclaje});
 });
@@ -226,23 +227,23 @@ router.get('/desinscribir/:run', isLoggedIn, isAdmin, async (req, res) => { //EN
 
 
 //*******DESCARGAS DE ARCHIVO */
-router.get('/Descagar/UsersInscritos', isLoggedIn, isAdmin, async (req, res) => {
+router.get('/descargar/UsersInscritos', isLoggedIn, isAdmin, async (req, res) => {
     const userInscrito = await pool.query('SELECT * FROM userinscrito_reciclo');
     downloadCSV(userInscrito, "usuariosInscritos.csv", convertArrayOfObjectsToCSV);
     res.redirect('/usersInscritos');
 });
-router.get('/Descagar/UsersEspera', isLoggedIn, isAdmin, async (req, res) => {
+router.get('/descargar/UsersEspera', isLoggedIn, isAdmin, async (req, res) => {
     const userEspera = await pool.query('SELECT v.rol, v.run, u.nombre, v.telefono, v.num_habitantes, v.domicilio, u.email FROM (SELECT nombre, email, run FROM usuario) AS u INNER JOIN (SELECT rol, run, telefono, num_habitantes, domicilio FROM vivienda WHERE estado = "en espera")AS v ON u.run = v.run');
     downloadCSV(userEspera, "usuariosEspera.csv", convertArrayOfObjectsToCSV);
     res.redirect('/UsersEspera');
 });
-router.get('/Descagar/UsersAlertas', isLoggedIn, isAdmin, async (req, res) => {
+router.get('/descargar/UsersAlertas', isLoggedIn, isAdmin, async (req, res) => {
     const userAlerta = await pool.query('SELECT v.run, u.nombre, v.domicilio, DATE_FORMAT(a.fecha_alerta,  "%Y-%m-%d" ) AS fecha_alerta FROM alerta AS a INNER JOIN vivienda AS v ON a.rol=v.rol INNER JOIN usuario AS u ON v.run=u.run');
     downloadCSV(userAlerta, "usuariosAlertas.csv", convertArrayOfObjectsToCSV);
     res.redirect('/usersAlertas/1');
 });
-router.get('/Descagar/reciclaje', isLoggedIn, isAdmin, async (req, res) =>{
-    const reciclaje = await pool.query('select rol,DATE_FORMAT(fecha_reciclaje,  "%Y-%m-%d" ) as fecha_reciclaje from corroboracion'); 
+router.get('/descargar/reciclaje', isLoggedIn, isAdmin, async (req, res) =>{
+    const reciclaje = await pool.query('select v.run,v.telefono,c.rol,DATE_FORMAT(c.fecha_reciclaje,  "%Y-%m-%d" ) as fecha_reciclaje from corroboracion as c inner join vivienda as v on c.rol=v.rol'); 
     downloadCSV(reciclaje,"reciclaje.csv",convertArrayOfObjectsToCSV);
     res.redirect('/corroboracion');
 });
@@ -260,6 +261,15 @@ router.get('/eliminarArchivo/:archivo', isLoggedIn, isAdmin, async (req, res) =>
     switch (archivo) {
         case 'usuariosAlertas': { res.redirect('/usersAlertas/1'); }
         case 'reciclaje': { res.redirect('/corroboracion'); }
+        case 'usuariosInscritos':{ res.redirect('/usersInscritos');}
+        case 'vivienda':{ res.redirect('/exportador');}
+        case 'usuarios':{ res.redirect('/exportador');}
+        case 'sectores':{ res.redirect('/exportador');}
+        case 'subsectores':{ res.redirect('/exportador');}
+        case 'desinscripciones':{ res.redirect('/exportador');}
+        case 'corroboraciones':{ res.redirect('/exportador');}
+        case 'alertas':{ res.redirect('/exportador');}
+        case 'solicitud-modificaciones':{ res.redirect('/exportador');}
     }
 });
 
@@ -303,8 +313,63 @@ router.get('/generarCodigo', isLoggedIn, isAdmin, async (req, res) => {
     res.redirect('/codigo');
 });
 
+//######################## RUTAS DE EXPORTACION ########################
+
 router.get('/exportador',isLoggedIn, isAdmin, async (req, res)=>{
     res.render('admin/exportador');
 });
+
+router.get('/descargar/vivienda', isLoggedIn, isAdmin, async (req, res) => { //VIVIENDA
+    const vivienda = await pool.query('SELECT * FROM vivienda');
+    downloadCSV(vivienda, "vivienda.csv", convertArrayOfObjectsToCSV);
+    res.redirect('/exportador');
+});
+
+router.get('/descargar/usuario', isLoggedIn, isAdmin, async (req, res) => {
+    const usuarios = await pool.query('SELECT * FROM usuario');
+    downloadCSV(usuarios, "usuarios.csv", convertArrayOfObjectsToCSV);
+    res.redirect('/exportador');
+});
+
+router.get('/descargar/sector', isLoggedIn, isAdmin, async (req, res) => {
+    const sectores = await pool.query('SELECT * FROM sector');
+    downloadCSV(sectores, "sectores.csv", convertArrayOfObjectsToCSV);
+    res.redirect('/exportador');
+});
+
+
+router.get('/descargar/subsector', isLoggedIn, isAdmin, async (req, res) => {
+    const subsectores = await pool.query('SELECT * FROM subsector');
+    downloadCSV(subsectores, "subsectores.csv", convertArrayOfObjectsToCSV);
+    res.redirect('/exportador');
+});
+
+
+router.get('/descargar/desinscripcion', isLoggedIn, isAdmin, async (req, res) => {
+    const desinscripciones = await pool.query('SELECT * FROM desinscripcion');
+    downloadCSV(desinscripciones, "desinscripciones.csv", convertArrayOfObjectsToCSV);
+    res.redirect('/exportador');
+});
+
+
+router.get('/descargar/corroboracion', isLoggedIn, isAdmin, async (req, res) => {
+    const corroboraciones = await pool.query('SELECT * FROM corroboracion');
+    downloadCSV(corroboraciones, "corroboraciones.csv", convertArrayOfObjectsToCSV);
+    res.redirect('/exportador');
+});
+
+
+router.get('/descargar/alerta', isLoggedIn, isAdmin, async (req, res) => {
+    const alertas = await pool.query('SELECT * FROM alerta');
+    downloadCSV(alertas, "alertas.csv", convertArrayOfObjectsToCSV);
+    res.redirect('/exportador');
+});
+
+router.get('/descargar/solicitud-modificacion', isLoggedIn, isAdmin, async (req, res) => {
+    const solicitudMods = await pool.query('SELECT * FROM solicitud_modificacion');
+    downloadCSV(solicitudMods, "solicitud-modificaciones.csv", convertArrayOfObjectsToCSV);
+    res.redirect('/exportador');
+});
+
 
 module.exports = router;

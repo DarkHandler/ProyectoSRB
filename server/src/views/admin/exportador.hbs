@@ -3,70 +3,233 @@
     <div class="row text-center">
         <h2>Exportar datos de la base de datos</h2>
     </div>
-    <div class="row" align="center">
-        <div class="col">
+    <div class="row">
+        <div class="col d-flex justify-content-center"> <!--Vivienda-->
             <div class="card" style="width: 18rem;">
                 <div class="card-body tarjeta-verde text-white">
-                    <h5 class="card-title" align="center"><b>Exportar tabla vivienda</b></h5>
+                    <h5 class="card-title" align="center"><b>Exportar tabla Vivienda</b></h5>
                     <h5 class="card-text ">Descripción</h5>
                     <h6>
                         Esta tabla contiene los siguientes datos:
                     </h6>
                     <ul>
-                        <li>nombre</li>
-                        <li>otro dato</li>
-                        <li>otro dato</li>
-                        <li>otro dato</li>
+                        <li>Rol</li>
+                        <li>Domicilio</li>
+                        <li>Número de habitantes</li>
+                        <li>Teléfono</li>
+                        <li>Fecha incorporacion</li>
+                        <li>Estado (inscrito, en espera o desinscrito)</li>
+                        <li>Subsector</li>
+                        <li>Run de la persona</li>
                     </ul>
                     <br>
                     <div align="center">
-                        <a href="#" class="btn btn-success btn-verde-cl">Descargar</a>
+                        <a type="button" href="/descargar/vivienda" class="btn btn-gris-os" >Generar archivo</a>
+                        <br>
+                        <br>
+                        <a class="btn btn-gris-os" onclick="viviendaDown()" >Exportar a excel</a>
+                        <a href="excels/vivienda.csv" id="descargar-vi" style="display: none;" download="vivienda.csv"></a>
+                        <a href="/eliminarArchivo/vivienda" id="eliminame-vi" style="display: none;"></a>
                         <br>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col">
+        <div class="col d-flex justify-content-center"><!--Usuario-->
             <div class="card" style="width: 18rem;">
                 <div class="card-body tarjeta-verde text-white">
-                    <h5 class="card-title" align="center"><b>Exportar tabla usuario</b></h5>
+                    <h5 class="card-title" align="center"><b>Exportar tabla Usuario</b></h5>
                     <h5 class="card-text ">Descripción</h5>
                     <h6>
                         Esta tabla contiene los siguientes datos:
                     </h6>
                     <ul>
-                        <li>nombre</li>
-                        <li>otro dato</li>
-                        <li>otro dato</li>
-                        <li>otro dato</li>
+                        <li>Run de la persona</li>
+                        <li>Nombre</li>
+                        <li>Tipo de usuario</li>
+                        <li>Email</li>
+                        <li>Contraseña</li>
                     </ul>
                     <br>
                     <div align="center">
-                        <a href="#" class="btn btn-success btn-verde-cl">Descargar</a>
+                        <a type="button" href="/descargar/usuario" class="btn btn-gris-os" >Generar archivo</a>
+                        <br>
+                        <br>
+                        <a class="btn btn-gris-os" onclick="usuarioDown()" >Exportar a excel</a>
+                        <a href="excels/usuarios.csv" id="descargar-us" style="display: none;" download="usuarios.csv"></a>
+                        <a href="/eliminarArchivo/usuarios" id="eliminame-us" style="display: none;"></a>
                         <br>
                     </div>
                 </div>
             </div>
         </div>
         
-        <div class="col">
+        <div class="col d-flex justify-content-center"><!--Sector-->
             <div class="card" style="width: 18rem;">
                 <div class="card-body tarjeta-verde text-white">
-                    <h5 class="card-title" align="center"><b>Exportar tabla vivienda</b></h5>
+                    <h5 class="card-title" align="center"><b>Exportar tabla Sector</b></h5>
                     <h5 class="card-text ">Descripción</h5>
                     <h6>
                         Esta tabla contiene los siguientes datos:
                     </h6>
                     <ul>
-                        <li>nombre</li>
-                        <li>otro dato</li>
-                        <li>otro dato</li>
-                        <li>otro dato</li>
+                        <li>Identificador del sector</li>
+                        <li>Nombre</li>
                     </ul>
                     <br>
                     <div align="center">
-                        <a href="#" class="btn btn-success btn-verde-cl">Descargar</a>
+                        <a type="button" href="/descargar/sector" class="btn btn-gris-os" >Generar archivo</a>
+                        <br>
+                        <br>
+                        <a class="btn btn-gris-os" onclick="sectorDown()" >Exportar a excel</a>
+                        <a href="excels/sectores.csv" id="descargar-sec" style="display: none;" download="sectores.csv"></a>
+                        <a href="/eliminarArchivo/sectores" id="eliminame-sec" style="display: none;"></a>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <div class="row">
+        <div class="col d-flex justify-content-center"><!--Sector-->
+            <div class="card" style="width: 18rem;">
+                <div class="card-body tarjeta-verde text-white">
+                    <h5 class="card-title" align="center"><b>Exportar tabla Subsector</b></h5>
+                    <h5 class="card-text ">Descripción</h5>
+                    <h6>
+                        Esta tabla contiene los siguientes datos:
+                    </h6>
+                    <ul>
+                        <li>Identificador del subsector</li>
+                        <li>Nombre</li>
+                        <li>Identificador del sector que pertenece</li>
+                    </ul>
+                    <br>
+                    <div align="center">
+                        <a type="button" href="/descargar/subsector" class="btn btn-gris-os" >Generar archivo</a>
+                        <br>
+                        <br>
+                        <a class="btn btn-gris-os" onclick="subsectorDown()" >Exportar a excel</a>
+                        <a href="excels/subsectores.csv" id="descargar-subsec" style="display: none;" download="subsectores.csv"></a>
+                        <a href="/eliminarArchivo/subsectores" id="eliminame-subsec" style="display: none;"></a>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col d-flex justify-content-center"><!--Desinscripcion-->
+            <div class="card" style="width: 18rem;">
+                <div class="card-body tarjeta-verde text-white">
+                    <h5 class="card-title" align="center"><b>Exportar tabla Desinscripcion</b></h5>
+                    <h5 class="card-text ">Descripción</h5>
+                    <h6>
+                        Esta tabla contiene los siguientes datos:
+                    </h6>
+                    <ul>
+                        <li>Run de la persona</li>
+                        <li>Motivo</li>
+                    </ul>
+                    <br>
+                    <div align="center">
+                        <a type="button" href="/descargar/desinscripcion" class="btn btn-gris-os" >Generar archivo</a>
+                        <br>
+                        <br>
+                        <a class="btn btn-gris-os" onclick="desinscripcionDown()" >Exportar a excel</a>
+                        <a href="excels/desinscripciones.csv" id="descargar-desin" style="display: none;" download="desinscripciones.csv"></a>
+                        <a href="/eliminarArchivo/desinscripciones" id="eliminame-desin" style="display: none;"></a>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col d-flex justify-content-center"><!--Corroboracion-->
+            <div class="card" style="width: 18rem;">
+                <div class="card-body tarjeta-verde text-white">
+                    <h5 class="card-title" align="center"><b>Exportar tabla Corroboracion</b></h5>
+                    <h5 class="card-text ">Descripción</h5>
+                    <h6>
+                        Esta tabla contiene los siguientes datos:
+                    </h6>
+                    <ul>
+                        <li>Fecha de reciclaje</li>
+                        <li>Rol de la vivienda</li>
+                    </ul>
+                    <br>
+                    <div align="center">
+                        <a type="button" href="/descargar/corroboracion" class="btn btn-gris-os" >Generar archivo</a>
+                        <br>
+                        <br>
+                        <a class="btn btn-gris-os" onclick="corroboracionDown()" >Exportar a excel</a>
+                        <a href="excels/corroboraciones.csv" id="descargar-corrobo" style="display: none;" download="corroboraciones.csv"></a>
+                        <a href="/eliminarArchivo/corroboraciones" id="eliminame-corrobo" style="display: none;"></a>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col d-flex justify-content-center"><!--Alerta-->
+            <div class="card" style="width: 18rem;">
+                <div class="card-body tarjeta-verde text-white">
+                    <h5 class="card-title" align="center"><b>Exportar tabla Alerta</b></h5>
+                    <h5 class="card-text ">Descripción</h5>
+                    <h6>
+                        Esta tabla contiene los siguientes datos:
+                    </h6>
+                    <ul>
+                        <li>Fecha de la alerta</li>
+                        <li>Rol de la vivienda</li>
+                        <li>Estado (pendiente o revisado)</li>
+                    </ul>
+                    <br>
+                    <div align="center">
+                        <a type="button" href="/descargar/alerta" class="btn btn-gris-os" >Generar archivo</a>
+                        <br>
+                        <br>
+                        <a class="btn btn-gris-os" onclick="alertaDown()" >Exportar a excel</a>
+                        <a href="excels/alertas.csv" id="descargar-alert" style="display: none;" download="alertas.csv"></a>
+                        <a href="/eliminarArchivo/alertas" id="eliminame-alert" style="display: none;"></a>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col d-flex justify-content-center"><!--Alerta-->
+            <div class="card" style="width: 18rem;">
+                <div class="card-body tarjeta-verde text-white">
+                    <h5 class="card-title" align="center"><b>Exportar tabla Solicitud de Modificacion de datos</b></h5>
+                    <h5 class="card-text ">Descripción</h5>
+                    <h6>
+                        Esta tabla contiene los siguientes datos:
+                    </h6>
+                    <ul>
+                        <li>Run de la persona</li>
+                        <li>Estado</li>
+                        <li>Rol de la vivienda</li>
+                        <li>Domicilio</li>
+                        <li>Número de habitantes</li>
+                        <li>Identificador del subsector</li>
+                    </ul>
+                    <br>
+                    <div align="center">
+                        <a type="button" href="/descargar/solicitud-modificacion" class="btn btn-gris-os" >Generar archivo</a>
+                        <br>
+                        <br>
+                        <a class="btn btn-gris-os" onclick="solicitudModDown()" >Exportar a excel</a>
+                        <a href="excels/solicitud-modificaciones.csv" id="descargar-solmod" style="display: none;" download="solicitud-modificaciones.csv"></a>
+                        <a href="/eliminarArchivo/solicitud-modificaciones" id="eliminame-solmod" style="display: none;"></a>
                         <br>
                     </div>
                 </div>
@@ -75,3 +238,38 @@
 
     </div>
 </div>
+
+<script>
+    function viviendaDown(){
+        document.getElementById('descargar-vi').click();
+        document.getElementById('eliminame-vi').click();
+    }
+    function usuarioDown(){
+        document.getElementById('descargar-us').click();
+        document.getElementById('eliminame-us').click();
+    }
+    function sectorDown(){
+        document.getElementById('descargar-sec').click();
+        document.getElementById('eliminame-sec').click();
+    }
+    function subsectorDown(){
+        document.getElementById('descargar-subsec').click();
+        document.getElementById('eliminame-subsec').click();
+    }
+    function desinscripcionDown(){
+        document.getElementById('descargar-desin').click();
+        document.getElementById('eliminame-desin').click();
+    }
+    function corroboracionDown(){
+        document.getElementById('descargar-corrobo').click();
+        document.getElementById('eliminame-corrobo').click();
+    }
+    function alertaDown(){
+        document.getElementById('descargar-alert').click();
+        document.getElementById('eliminame-alert').click();
+    }
+    function solicitudModDown(){
+        document.getElementById('descargar-solmod').click();
+        document.getElementById('eliminame-solmod').click();
+    }
+</script>

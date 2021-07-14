@@ -5,7 +5,7 @@
     </div>
     <div class="row">
         <div class="col-md-10 mx-auto">
-            <a type="button" href="/Descagar/reciclaje" class="btn btn-dark">Generar archivo</a>
+            <a type="button" href="/descargar/reciclaje" class="btn btn-dark">Generar archivo</a>
             <a class="btn btn btn-outline-secondary bg-dark" onclick="downanddown()">Exportar a excel</a>
             <a href="/excels/reciclaje.csv" id="descargar" style="display: none;"
                 download="reciclaje.csv"></a>
@@ -14,6 +14,8 @@
                 <table class="table table-info table-striped table-hover">
                     <thead>
                         <tr>
+                            <th scope="col">Run del usuario</th>
+                            <th scope="col">Teléfono del usuario</th>
                             <th scope="col">Rol de la vivienda</th>
                             <th scope="col">Fecha de reciclaje</th>
                         </tr>
@@ -21,6 +23,8 @@
                     <tbody>
                         {{#each reciclaje}}
                         <tr>
+                            <td>{{this.run}}</td>
+                            <td>{{this.telefono}}</td>
                             <td>{{this.rol}}</td>
                             <td>{{this.fecha_reciclaje}}</td>
                         </tr>

@@ -73,7 +73,7 @@ router.get('/alerta/:rol', isLoggedIn, isVivienda, async (req,res)=>{
     const fecha = new Date();
     fecha.toISOString().split('T')[0];
     const aux = await pool.query('SELECT * FROM alerta WHERE rol = ? AND (fecha_alerta BETWEEN DATE_SUB( ? ,INTERVAL 1 WEEK) AND ? );',[rol,fecha,fecha]);
-    if (aux==[]) {
+    if (aux.length==0) {
         await pool.query('INSERT INTO alerta (rol) values (?)',[rol]);
         req.flash('success','La alerta ha sido enviada con exito');
     }else{

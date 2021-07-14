@@ -105,3 +105,5 @@ CREATE VIEW userinscrito_reciclo AS SELECT userinscrito.rol, contrasena,run,nomb
 --Vista alertas
 CREATE VIEW vistaAlertas AS SELECT * FROM alerta;
 
+--INSERCION DE USUARIO ADMINISTRADOR A LA BASE DE DATOS
+INSERT INTO usuario(run, nombre, tipo_usuario, contrasena) VALUES ('0','Administrador','admin','A2G3TL0NK2E')

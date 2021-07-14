@@ -21,10 +21,10 @@ passport.use('local.login', new LocalStrategy({
             if(user.tipo_usuario == "vivienda"){
                 const vivienda = await pool.query('SELECT estado FROM vivienda WHERE run=?',[user.run]);
                 if(vivienda[0].estado == "en espera"){
-                    done(null, false, req.flash('message','El estado de su postulacion aun esta pendiente')); //no le envio error ni usuario, pero le envio un mensaje..
+                    done(null, false, req.flash('warning','El estado de su postulacion aun esta pendiente')); //no le envio error ni usuario, pero le envio un mensaje..
                 }else{
                     if(vivienda[0].estado == "desinscrito"){
-                        done(null, false, req.flash('message','Usted se ha desinscrito del programa de reciclaje'));
+                        done(null, false, req.flash('danger','Usted se ha desinscrito del programa de reciclaje'));
                     }else{
                         done(null, user, req.flash('success','Bienvenido '+user.nombre)); //le paso null como error
                     }
@@ -32,10 +32,10 @@ passport.use('local.login', new LocalStrategy({
             }
             done(null, user, req.flash('success','Bienvenido '+user.nombre)); //le paso null como error
         }else{
-            done(null, false, req.flash('message','Los datos ingresados son incorrectos')); //no le envio error ni usuario, pero le envio un mensaje..
+            done(null, false, req.flash('danger','Los datos ingresados son incorrectos')); //no le envio error ni usuario, pero le envio un mensaje..
         }
     }else{ //si no encontre ningun usuario
-        done(null, false, req.flash('message','Los datos ingresados son incorrectos'));
+        done(null, false, req.flash('danger','Los datos ingresados son incorrectos'));
     }
 
 })); 

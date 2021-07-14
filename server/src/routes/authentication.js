@@ -56,6 +56,7 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
         if (!user) { 
             return res.redirect('/login'); 
         } //si no existe retorna esto
+        
         req.logIn(user, (err) => { //si hay usuario tira la funcion
             if (err) { return next(err); }  //REVISAR CALLBACK QUE NO TERMINA RESPONDIENDOSE POR QUE HAY REDIRECT
             if (user.tipo_usuario == "admin") {
